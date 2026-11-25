@@ -44,6 +44,7 @@ header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 .mosaic{margin:26px 0 0}.mosaic img{width:100%;height:auto;display:block;border-radius:16px}
 .card .num.pcq{font-size:clamp(28px,3vw,36px);font-weight:800;line-height:1.1;margin-bottom:12px}
 .cols.resgrid{grid-template-columns:minmax(0,2.4fr) minmax(0,1fr);align-items:center}.resbox{border-radius:14px;overflow:hidden;border:1px solid var(--line)}.resg{width:100%;height:auto;display:block}.restext p{font-size:19px;line-height:1.45}.rescel{color:#5f9fd4;font-weight:700}@media(max-width:960px){.cols.resgrid{grid-template-columns:1fr}}
+.minbox{display:flex;align-items:stretch;gap:18px;background:#fff;border-radius:14px;padding:30px 28px;border:1px solid var(--line)}.minbox img{width:calc(100% - 70px);height:auto;display:block}.mincota{flex:none;width:44px;position:relative;border-left:2px solid #3A3A3C}.mincota::before,.mincota::after{content:"";position:absolute;left:-9px;width:16px;border-top:2px solid #3A3A3C}.mincota::before{top:0}.mincota::after{bottom:0}.mincota span{position:absolute;left:10px;top:50%;transform:translateY(-50%) rotate(180deg);font-weight:700;font-size:15px;white-space:nowrap;color:#3A3A3C;writing-mode:vertical-rl;left:8px}.minreal{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:var(--mute)}.minreal img{background:#fff;padding:6px;border-radius:6px}
 nav.chap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
 nav.chap::-webkit-scrollbar{display:none}
 nav.chap a{flex:none;text-decoration:none;color:var(--mute);font-size:14px;padding:8px 10px;border-radius:8px;white-space:nowrap}
@@ -578,11 +579,13 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:
   </div>
   <div class="chead" style="margin-top:44px"><div><h2>Tamaños mínimos</h2></div></div>
   <div class="cols two">
-   <div><p>Por debajo de estas medidas, el logotipo pierde lectura. Para usos menores, usamos la sigla imc o el isotipo solo.</p></div>
-   <div class="sizes">
-    <div><img src="assets/imc-horizontal.jpg" alt="" style="width:62px"><span><b>Impreso:</b> 10 mm de alto para la versión horizontal.</span></div>
-    <div><img src="assets/imc-horizontal.jpg" alt="" style="width:96px"><span><b>Digital:</b> 120 px de ancho para la versión horizontal.</span></div>
-    <div><img src="assets/imc-isotipo.jpg" alt="" style="width:32px"><span><b>Isotipo solo:</b> 24 px o 6 mm. Avatar de redes y favicon.</span></div>
+   <div><p>El tamaño mínimo del isologotipo en una línea es de <b>15 mm de alto</b>, medidos desde el extremo superior al inferior del símbolo.</p><p>Por debajo de esa medida el logotipo pierde lectura. Para usos menores, usamos la sigla <b>imc</b> o el isotipo solo.</p></div>
+   <div>
+    <div class="minbox">
+     <div class="mincota"><span>15 mm</span></div>
+     <img src="assets/imc-linea-unica.png" alt="Isologotipo de imotion connect en una línea, tamaño mínimo 15 mm de alto">
+    </div>
+    <div class="minreal"><img src="assets/imc-linea-unica.png" alt="" style="height:15mm;width:auto"><span>Referencia a 15 mm de alto. En pantalla, la escala real puede variar según el dispositivo.</span></div>
    </div>
   </div>
  </div>
