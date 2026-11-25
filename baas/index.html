@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BaaS | Board as a Service · Brandbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: un par con más recorrido; firme sin soberbia, sereno, cada afirmación con su evidencia al lado.
+IDEA: la flecha de triángulos en progresión: lo decidido que avanza hasta ocurrir. Los triángulos ordenan viñetas, separadores y fondos.
+PICTURE: el isologotipo sobre lámina blanca; el manifiesto en azul noche; la Parte Dos en dorado, como en el brandbook impreso.
+COLOUR and TYPE: azul noche #213250, dorado #C7BE93, gris base #6D6E72, neutros #F2F1EF/#C2C3C1; Kanit.
+LAYOUT: barra fija con capítulos; cada capítulo en tres columnas (tesis, desarrollo, consecuencias) como el brandbook impreso.
+*/
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#141a26);--soft:light-dark(#F2F1EF,#1b2333);--line:light-dark(#e1dfd8,#2c3548);
+--ink:light-dark(#3A3A3C,#eceae3);--mute:light-dark(#6D6E72,#a9adb6);
+--noche:#213250;--azul:#3D547D;--azul2:#596B93;--lav:#8086A8;--dorado:#C7BE93;--dorado2:#ACA47F;--doradoD:#8F8A6A;--crema:#ECE5BB;
+--azulT:light-dark(#304467,#aeb6d6);--oroT:light-dark(#8F8A6A,#d8cf9f);
+--pend:light-dark(#f6f0d2,#3a3520);--pendInk:light-dark(#6a5a12,#e8d98a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.6 "Kanit",system-ui,sans-serif;overflow-x:clip}
+b,strong{font-weight:500}
+h1,h2,h3,h4{margin:0;line-height:1.12;text-wrap:balance}
+p{margin:0 0 .9em}
+a{color:var(--azulT)}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(36px,5vw,80px) max(5vw,16px)}
+.band.alt{background:var(--soft)}
+.band.noche{background:var(--noche);color:#eceae3}
+.band.oro{background:var(--dorado);color:#213250}
+.scroll{overflow-x:auto}
+figure{margin:0}
+
+/* barra */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;gap:16px;padding:10px max(5vw,16px);max-width:1340px;margin:0 auto}
+.topin .mark{flex:none;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:500;font-size:15px}
+.topin .mark span{width:34px;height:34px;border-radius:8px;background:#fff url(assets/baas-simbolo.svg) center/72% no-repeat;border:1px solid var(--line)}
+.fksc{flex:none;display:block;width:44px;height:44px;margin-left:4px}.fksc img{width:100%;height:100%;object-fit:contain;display:block}
+nav.chap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+nav.chap::-webkit-scrollbar{display:none}
+nav.chap a{flex:none;text-decoration:none;color:var(--mute);font-size:14px;padding:8px 10px;border-radius:8px;white-space:nowrap}
+nav.chap a:hover,nav.chap a.on{color:var(--ink);background:var(--soft)}
+nav.chap a b{color:var(--oroT);margin-right:4px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,64px);align-items:center}
+.hero h1{font-size:clamp(44px,6.4vw,72px);font-weight:600;letter-spacing:-.01em;color:var(--azulT)}
+.hero .lead{font-size:18px;max-width:34em;margin-top:18px}
+.plate{background:#fff;border-radius:18px;display:grid;place-items:center;padding:clamp(20px,4vw,48px);box-shadow:0 1px 0 var(--line),0 20px 50px -30px rgba(33,50,80,.45)}
+.plate img{width:100%;height:auto;display:block}
+.plate.heroplate{background:none;box-shadow:none;padding:0 4%}
+.plate.tall img{max-height:300px;width:auto;max-width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--mute)}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+
+/* capítulos */
+.chead{display:flex;align-items:baseline;gap:18px;padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:28px}
+.chead .n{font-size:clamp(40px,5vw,56px);font-weight:300;color:var(--oroT);line-height:1;padding-right:18px;border-right:3px solid var(--dorado)}
+.chead h2{font-size:clamp(28px,3.4vw,40px);font-weight:300;color:var(--azulT)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) minmax(0,1.25fr);gap:clamp(20px,3vw,44px)}
+.cols.two{grid-template-columns:minmax(0,1fr) minmax(0,2.5fr)}
+.cols.half{grid-template-columns:repeat(2,minmax(0,1fr))}
+.thesis{font-weight:500;color:var(--azulT);font-size:19px;line-height:1.42}
+.thesis p{margin-bottom:.8em}
+.thesis .sub{font-weight:300;color:var(--ink);font-size:16px}
+h3{font-size:clamp(20px,2vw,24px);font-weight:500;line-height:1.2;color:var(--ink);margin:0 0 12px}
+h3.k{font-size:clamp(22px,2.4vw,28px);color:var(--azulT);font-weight:400}
+.lbl{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--oroT);margin:0 0 10px}
+.blk{margin-bottom:26px}
+.quote{font-size:clamp(21px,2.4vw,28px);font-weight:300;line-height:1.32;border-left:4px solid var(--dorado);padding-left:20px;margin:6px 0 24px}
+.pull{font-weight:500;font-size:20px;line-height:1.4;color:var(--azulT)}
+ul.gt{list-style:none;padding:0;margin:0}
+ul.gt li{padding-left:22px;position:relative;margin-bottom:12px}
+ul.gt li::before{content:"";position:absolute;left:2px;top:.5em;border-left:10px solid var(--azul2);border-top:6px solid transparent;border-bottom:6px solid transparent}
+.noche ul.gt li::before{border-left-color:var(--dorado)}
+@media(max-width:960px){.cols,.cols.two,.cols.half{grid-template-columns:1fr}}
+
+/* pendientes */
+.pv{display:inline-block;font-size:12px;font-weight:500;background:var(--pend);color:var(--pendInk);border-radius:6px;padding:1px 8px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+
+/* tarjetas */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media(max-width:1000px){.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid4{grid-template-columns:1fr}}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.card h4{font-size:19px;font-weight:500;margin-bottom:8px;color:var(--ink)}
+.card p{margin:0 0 8px}
+.card .num{font-size:20px;color:var(--oroT);font-weight:500;margin-bottom:6px}
+.card .mute{color:var(--mute)}
+.card.top{border-top:6px solid var(--azul)}
+.card.topo{border-top:6px solid var(--dorado)}
+.card .hook{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-style:italic;color:var(--azulT)}
+.card .hook b{font-style:normal;display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--oroT)}
+.ppp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ppp .card{border-top:6px solid var(--noche)}
+.ppp .card h4{font-size:23px;font-weight:300;line-height:1.3}
+.ppp .card .num{font-size:30px;font-weight:600;color:var(--azulT)}
+@media(max-width:860px){.ppp{grid-template-columns:1fr}}
+.tagw{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{font-size:12px;font-weight:500;border-radius:6px;padding:2px 8px;background:var(--noche);color:#fff}
+.tag.o{background:var(--dorado);color:#213250}
+.important{background:var(--noche);color:#fff;border-radius:14px;padding:22px 26px;margin-top:18px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.important span{font-size:12px;letter-spacing:.12em;font-weight:500;color:var(--dorado)}
+.important p{margin:0;font-size:clamp(19px,2vw,24px);line-height:1.3}
+
+/* lado empresa / talento */
+.side{display:flex;align-items:center;gap:12px;margin:34px 0 14px}
+.side i{width:0;height:0;border-left:16px solid var(--azul);border-top:10px solid transparent;border-bottom:10px solid transparent}
+.side.o i{border-left-color:var(--dorado2)}
+.side h3{margin:0}
+
+/* tablas */
+table{width:100%;border-collapse:collapse;font-size:16px}
+th{text-align:left;font-size:clamp(17px,1.8vw,22px);line-height:1.25;color:var(--azulT);font-weight:400;border-bottom:2px solid var(--ink);padding:8px 10px}
+td{border-bottom:1px solid var(--line);padding:14px 10px;vertical-align:top}
+@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;color:var(--mute);font-size:12px}}
+
+/* líneas de oferta */
+.lin .ic{width:52px;height:52px;border-radius:12px;background:var(--noche);display:grid;place-items:center;margin-bottom:14px}
+.lin .ic svg{width:30px;height:30px;stroke:var(--dorado);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lin h4 small{display:block;font-size:14px;font-weight:300;color:var(--mute);margin-top:4px}
+.tablero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:28px;align-items:center;background:var(--noche);color:#eceae3;border-radius:18px;padding:clamp(22px,3vw,40px);margin-top:36px}
+.tablero h3{color:var(--dorado)}
+.tbl{display:grid;gap:8px}
+.tbl div{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr) minmax(0,.9fr) 18px;gap:10px;align-items:center;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 12px;font-size:14px}
+.tbl div.h{background:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dorado);padding-block:0}
+.tbl i{width:12px;height:12px;border-radius:50%;display:block}
+@media(max-width:800px){.tablero{grid-template-columns:1fr}}
+
+/* voz */
+.oro-list{counter-reset:r;list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.oro-list li{border:1px solid var(--line);border-radius:14px;padding:18px 20px 18px 64px;position:relative;background:var(--bg)}
+.oro-list li::before{counter-increment:r;content:"0" counter(r);position:absolute;left:18px;top:14px;font-size:24px;font-weight:300;color:var(--oroT)}
+.oro-list li b{display:block;font-size:18px;margin-bottom:4px}
+.oro-list li span{color:var(--mute)}
+@media(max-width:760px){.oro-list{grid-template-columns:1fr}}
+.wr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wr>div{border-radius:12px;padding:16px 18px}
+.ok{background:color-mix(in srgb,var(--dorado) 34%,var(--bg))}
+.no{background:color-mix(in srgb,#c0392b 13%,var(--bg))}
+.wr h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:500}
+.wr p{font-size:20px;margin:0 0 6px}
+.no p{text-decoration:line-through;text-decoration-color:#c0392b}
+@media(max-width:700px){.wr{grid-template-columns:1fr}}
+.say-big{font-size:clamp(26px,3.4vw,40px);font-weight:300;margin:6px 0}
+.say-big b{font-weight:600}
+.names{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.9fr);gap:clamp(20px,3vw,44px);margin-bottom:18px}
+.say-big.nw{white-space:nowrap;font-size:clamp(20px,3.4vw,40px)}
+@media(max-width:760px){.names{grid-template-columns:1fr}}
+
+/* bios */
+.bios{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:26px}
+.bio{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg)}
+.bio header{background:var(--noche);color:#fff;padding:22px 26px;display:flex;gap:16px;align-items:center}
+.bio header .av{flex:none;width:64px;height:64px;border-radius:50%;background:var(--dorado);color:var(--noche);display:grid;place-items:center;font-size:22px;font-weight:500}
+.bio header h4{font-size:22px;font-weight:500;letter-spacing:.02em}
+.bio header p{margin:2px 0 0;font-size:14px;color:var(--dorado)}
+.bio .bd{padding:22px 26px}
+.bio .cred{font-size:14px;color:var(--mute);border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
+.bio .why{background:var(--soft);border-radius:12px;padding:18px 20px;margin-top:18px}
+.bio .why h5{margin:0 0 8px;font-size:16px;font-weight:500;color:var(--azulT)}
+.bio .why p{font-size:15.5px}
+@media(max-width:900px){.bios{grid-template-columns:1fr}}
+
+/* identidad */
+.specs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:22px;align-items:stretch}
+.specs .spec{display:flex;flex-direction:column}.specs .plate{flex:1}
+@media(max-width:760px){.specs{grid-template-columns:1fr}}
+.spec figcaption{font-size:14px;color:var(--mute);margin-top:10px}
+.spec figcaption b{color:var(--ink)}
+.rule{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;font-weight:500;margin-top:16px}
+.rule span{border:1px solid #b03a2e;color:light-dark(#b03a2e,#f08a7e);border-radius:6px;padding:4px 10px}
+.fondos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.fondos img{width:100%;height:auto;display:block}
+.fondos figcaption{font-size:14px;margin-top:8px;color:var(--mute)}.fondos figcaption b{color:var(--ink)}
+@media(max-width:900px){.fondos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:520px){.fondos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.circs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin-top:22px}
+.circs img{width:100%;height:auto;display:block}
+.circs figcaption{font-size:14px;color:var(--mute);margin-top:10px;text-align:center}
+@media(max-width:700px){.circs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.resbox{background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line);padding:0}
+.resbox img{width:100%;height:auto;display:block}
+.resgrid{grid-template-columns:minmax(0,2.4fr) minmax(0,1fr);align-items:center}
+.restext p{font-size:19px;line-height:1.45}
+.resoro{color:var(--oroT);font-weight:500}
+@media(max-width:960px){.resgrid{grid-template-columns:1fr}}
+.sizes{background:#fff;border-radius:14px;border:1px solid var(--line);padding:22px 26px;color:#3A3A3C}
+.sizes div{display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;align-items:center;border-bottom:1px solid #ecebe6;padding:12px 0}
+.sizes div:last-child{border:0}
+.sizes span{font-weight:500;font-size:15px}
+.sizes img{display:block;width:auto}
+
+.pal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media(max-width:900px){.pal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.pal{grid-template-columns:1fr}}
+.fam{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
+.fam .tones div{min-height:40px;padding-block:4px;line-height:1.25;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-size:12px;font-family:ui-monospace,Menlo,monospace}
+.fam .tones div.base{min-height:64px;font-weight:600;font-size:13px}
+.fam .tones small{font-size:11px;font-weight:400;opacity:.9}.fam .d{padding:12px 14px;font-size:13px;line-height:1.6}
+.fam .d b{font-size:15px;display:block;letter-spacing:.04em}
+.fam button{font:inherit;font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:6px;padding:4px 8px;margin-top:8px;cursor:pointer;min-height:32px}
+
+.type{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.type .aa{font-size:clamp(90px,14vw,170px);font-weight:300;line-height:.9;color:var(--oroT)}
+.type .w{font-size:16px}
+.type .w>div:not(.typesample){border-bottom:1px solid var(--line);padding:8px 0;display:flex;justify-content:space-between;gap:12px}
+.typesample{background:var(--noche);color:#fff;border-radius:14px;padding:24px 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:24px}
+.typesample>div{min-width:0}.typesample b{display:block;font-size:clamp(24px,3vw,34px);font-weight:500}
+.typesample small{display:block;color:var(--dorado);font-size:14px;margin-top:6px}
+.typesample span{font-size:clamp(44px,6vw,64px);color:var(--dorado);font-weight:500;line-height:1}
+@media(max-width:700px){.type{grid-template-columns:1fr}}
+
+.bgs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:22px}
+.bgs img{width:100%;aspect-ratio:1/2;object-fit:cover;display:block;border-radius:14px;border:1px solid var(--line)}
+.bgs figcaption{margin-top:10px;font-size:14px;color:var(--mute)}.bgs figcaption b{color:var(--ink)}
+@media(max-width:800px){.bgs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mosaic{margin:26px 0 0;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.mosaic img{width:100%;height:auto;display:block}
+
+/* redes */
+.avs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:26px}
+.avs figure{background:#fff;border-radius:16px;padding:28px;text-align:center;border:1px solid var(--line);color:#3A3A3C}
+.avring{width:min(220px,70%);aspect-ratio:1;margin:0 auto;border-radius:50%;border:1.5px solid #cfcfcf;padding:4px}
+.avring img{width:100%;height:100%;display:block;border-radius:50%}
+.avs figcaption{margin-top:14px;font-size:15px}
+.avsm{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:16px}
+.posts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:16px;align-items:start}
+.posts figcaption{margin-top:10px;font-size:14px;color:var(--mute)}.posts figcaption b{color:var(--ink)}
+.li,.ig{background:#fff;color:#1d1d1f;border:1px solid #dcdfe3;border-radius:12px;overflow:hidden;font-size:14px;max-width:520px;margin:0 auto;box-shadow:0 12px 30px -20px rgba(33,50,80,.35);font-family:system-ui,sans-serif}
+.ph{display:flex;gap:10px;align-items:center;padding:12px 14px}.ph b{display:block;font-size:14px;font-weight:600}.ph span{display:block;font-size:12px;color:#6b6f75;line-height:1.35}.pav{width:48px;height:48px;border-radius:50%;display:block}
+.ptx{padding:0 14px 10px}.ptx p{margin:0 0 8px;line-height:1.45}
+.pimg{background:#213250 url(assets/bg-azul.jpg) center/cover;aspect-ratio:1.91/1;display:flex;align-items:center;gap:6%;padding:0 8%;color:#fff;font-family:"Kanit",sans-serif}
+.pimg img{width:26%;height:auto}.pimg p{margin:0;font-size:clamp(18px,2.2vw,28px);font-weight:300;line-height:1.2}.pimg p b{color:#C7BE93;font-weight:500}
+.pbar{display:flex;justify-content:space-around;padding:10px 6px;border-top:1px solid #eceef0;color:#555;font-weight:600;font-size:13px}
+.ig .sqw{position:relative;aspect-ratio:1;background:url(assets/bg-mosaico.jpg) center 30%/cover}
+.ig .sqw div{position:absolute;left:8%;right:8%;bottom:8%;background:#213250;color:#fff;border-radius:10px;padding:16px 18px;font-family:"Kanit",sans-serif;font-size:clamp(17px,2vw,22px);line-height:1.25;font-weight:300}
+.ig .sqw div b{color:#C7BE93;font-weight:500}
+.icons{display:flex;gap:16px;padding:10px 14px 4px}.icons svg{width:24px;height:24px;fill:none;stroke:#1d1d1f;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.cap{padding:4px 14px 14px}.cap p{margin:0;line-height:1.45}
+@media(max-width:760px){.avs,.posts{grid-template-columns:1fr}}
+
+footer{background:var(--noche);color:#eceae3}
+footer a{color:var(--dorado)}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;align-items:start}
+@media(max-width:760px){footer .wrap{grid-template-columns:1fr}}
+:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
+.msym{width:clamp(120px,14vw,190px);height:auto;margin-top:auto;padding-top:32px;display:block}
+.mleft{display:flex;flex-direction:column;height:100%}
+@media(max-width:960px){.msym{width:110px;margin-top:20px;padding-top:0}}
+</style>
+</head>
+<body>
+
+<header class="top">
+ <div class="topin">
+  <a class="mark" href="#inicio"><span></span>Brandbook</a>
+  <nav class="chap" id="nav" aria-label="Capítulos">
+   <a href="#manifiesto">Manifiesto</a>
+   <a href="#proposito"><b>1</b>Propósito</a>
+   <a href="#posicionamiento"><b>2</b>Posicionamiento</a>
+   <a href="#publicos"><b>3</b>A quién le hablamos</a>
+   <a href="#promesa"><b>4</b>Promesa</a>
+   <a href="#oferta"><b>5</b>Oferta</a>
+   <a href="#voz"><b>6</b>Voz y tono</a>
+   <a href="#historia"><b>7</b>Historia</a>
+   <a href="#identidad"><b>8</b>Identidad visual</a>
+  </nav>
+  <a class="fksc" href="https://fksc.com.ar" title="FKSC | Comunicación Estratégica"><img src="assets/fksc-brujula.png" alt="FKSC | Comunicación Estratégica"></a>
+ </div>
+</header>
+
+<main>
+<section class="band" id="inicio">
+ <div class="wrap hero">
+  <div>
+   <h1>Brandbook</h1>
+   <p class="lead">El objetivo de este manual es que todo lo que <b>BaaS</b> diga, muestre y haga sea coherente con lo que promete, en cualquier medio y en cualquier contexto.</p>
+   <p class="lead" style="margin-top:8px">Es la referencia común para el equipo, la red y cualquier agencia que represente la marca. Y no es un manual de logo: es el manual de cómo una marca que acompaña decisiones se ve, se escucha y se comporta.</p>
+   <div class="chips"><span class="chip">Edición web · noviembre 2026</span><span class="chip">Sobre el Brandbook de octubre 2026</span></div>
+  </div>
+  <div class="plate heroplate"><img src="assets/baas-horizontal.svg" alt="Isologotipo de BaaS | Board as a Service en versión horizontal, a color"></div>
+ </div>
+</section>
+
+<section class="band noche" id="manifiesto">
+ <div class="wrap cols two">
+  <div class="mleft"><h2 style="font-size:clamp(28px,3.4vw,40px);font-weight:300;color:#C7BE93">Manifiesto</h2><p style="margin-top:6px;font-size:clamp(22px,2.4vw,28px);font-weight:500;line-height:1.2">BaaS | Board as a Service</p><img class="msym" src="assets/baas-negativo.svg" alt=""></div>
+  <div style="font-size:18px;max-width:44em">
+   <p>Conocemos el punto exacto donde una empresa pierde velocidad. No está en el mercado ni en el equipo: está en la mesa donde alguien decide solo. Sabemos cómo se ve eso desde adentro. Definimos algo, seguimos adelante, y semanas después nos enteramos de qué se hizo, qué se trabó y por qué. Tarde, siempre tarde, cuando ya no queda margen para corregir.</p>
+   <p>Creemos que el criterio senior nunca faltó. Lo que faltó fue la manera de sentarlo a la mesa, a la medida de cada organización. Venía en un solo formato —entero, fijo y caro—. Para muchas empresas quedó fuera de alcance; para otras, la mesa que ya tienen se armó para otro momento y no reúne las capacidades que los desafíos de hoy exigen.</p>
+   <p>Por eso no aceptamos que la única opción sea la mesa completa o ninguna, ni que la mesa que existe quede fija. La fracción no vuelve barato al directorio: lo vuelve divisible, flexible y capaz de recomponerse. Y lo que se puede dividir, lo podemos armar.</p>
+   <p>Para tal fin, convocamos experiencia que busca desafío. No ofrecemos un lugar donde descansar el prestigio: ofrecemos desafíos que todavía no fueron superados. La experiencia que no se pone a prueba se archiva, y nosotros no estamos en el negocio de archivar.</p>
+   <p>Elegimos por capacidad antes que por el vínculo que da tranquilidad. Sostenemos la cadencia, semana a semana, porque sabemos que lo que hace que las cosas pasen no es la reunión brillante: es la reunión que se repite.</p>
+   <p>Y mostramos mientras todavía se puede corregir. No contamos lo que pasó: hacemos visible lo que está pasando.</p>
+   <p>No le sacamos a nadie la libertad ni la responsabilidad de dirigir. Lo sacamos de la soledad. No le quitamos el volante: le damos el tablero.</p>
+   <p>Que cada decisión sea la correcta depende de la organización entera. Lo nuestro es que ninguna se diluya en la urgencia: respondemos por el seguimiento que la lleva hasta el final.</p>
+   <p>Hay organizaciones que tienen todo para crecer. No les falta visión. No les falta equipo. Les falta alguien con quien sostener lo que se animaron a definir.</p>
+   <p>Esto somos. Y esto sostenemos, todos los días.</p>
+   <p class="pull" style="margin-top:20px;color:#C7BE93;font-size:26px">Que lo decidido, ocurra.</p>
+  </div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Cultura BaaS</h2></div></div>
+  <p style="max-width:52em;margin-top:-8px;margin-bottom:22px">Estos principios definen cómo nos sentamos a la mesa de cada cliente y cómo sostenemos, junto a él, lo que decidimos.</p>
+  <div class="grid4" id="cultura"></div>
+ </div>
+</section>
+
+<section class="band alt">
+ <div class="wrap cols">
+  <div><h2 style="font-size:clamp(26px,3vw,34px);font-weight:300;color:var(--azulT)">Un viaje en ascensor…</h2><p style="margin-top:8px;color:var(--mute)">Lo que hacemos, contado en treinta segundos.</p>
+   <p class="lbl" style="margin-top:26px">Las preguntas que puede disparar</p>
+   <ul class="gt" style="font-size:15.5px"><li>¿Cómo se arma un board a medida?</li><li>¿Quiénes se sientan a la mesa?</li><li>¿Y quien dirige no pierde el control?</li><li>¿Cómo se sigue lo que se decidió?</li><li>¿Cuánto cuesta un directorio a medida?</li></ul></div>
+  <div><h3 class="k">El problema</h3><p class="quote" style="font-size:21px">«Toda empresa tiene decisiones que se toman y nunca terminan de ocurrir. No por falta de ideas: es porque quien dirige decide solo, o con un directorio que no tiene las capacidades que el momento exige».</p></div>
+  <div><h3 class="k">Lo que hacemos</h3><p class="quote" style="font-size:21px">«En BaaS armamos el board que cada organización necesita —talento C-level, a medida— y sostenemos el seguimiento, semana a semana, para que lo decidido, ocurra».</p></div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Porqué · Cómo · Qué</h2></div></div>
+  <div class="ppp">
+   <div class="card"><div class="num">Porqué</div><h4>Creemos que nadie debe dirigir en soledad.</h4><p style="margin-top:12px;color:var(--mute)">La soledad de quien dirige es el cuello de botella: el punto exacto donde el negocio pierde velocidad.</p></div>
+   <div class="card"><div class="num">Cómo</div><h4>Elegimos por capacidad, sostenemos la cadencia semana a semana y mostramos mientras todavía se puede corregir.</h4><p style="margin-top:12px;color:var(--mute)">Método, tablero y talento trabajan juntos, a ritmo constante, durante todo el proceso.</p></div>
+   <div class="card"><div class="num">Qué</div><h4>Armamos el board que cada empresa necesita: talento C-level, a medida y en la dedicación justa.</h4><p style="margin-top:12px;color:var(--mute)">Cuatro líneas combinables bajo una sola marca, con un tablero que hace visible el avance.</p></div>
+  </div>
+  <div class="important" style="justify-content:center;text-align:center"><p>La bisagra entre el porqué y el cómo: <b style="color:var(--dorado)">Que lo decidido, ocurra.</b></p></div>
+ </div>
+</section>
+
+<!-- 1 -->
+<section class="band alt" id="proposito">
+ <div class="wrap">
+  <div class="chead"><span class="n">1</span><div><h2>Propósito de la marca</h2></div></div>
+  <div class="cols">
+   <div class="thesis"><p>En <b>BaaS</b> creemos que nadie debe dirigir en soledad.</p><p>Por eso armamos el board que cada empresa necesita —talento C-level, a medida y en la dedicación justa— y sostenemos el seguimiento para que lo decidido, ocurra.</p><p class="sub">Esta es la única capa de la marca que no se construye desde el análisis. Se reconoce o no se reconoce. Todo lo demás —el posicionamiento, la promesa, la oferta— se deduce de acá.</p></div>
+   <div>
+    <div class="blk"><h3>Lo que lo sustenta</h3>
+    <ul class="gt"><li>La soledad de quien dirige es el cuello de botella. No es una condición del cargo ni una carga emocional que haya que aceptar: es el punto exacto donde el negocio pierde velocidad. Todo lo que se define se detiene ahí.</li>
+    <li>El criterio senior venía en un solo formato: entero, fijo y caro. Para muchas empresas quedó fuera de alcance; para otras, la mesa que tienen ya no responde a los desafíos de hoy. La fracción no abarata el directorio: lo vuelve divisible y flexible. Y lo que se puede dividir, se puede armar.</li>
+    <li>Donde la mesa existe, muchas veces no alcanza: se armó para otro momento y no reúne las capacidades que el crecimiento exige. Responder con agilidad pide otra forma de sumar criterio.</li>
+    <li>No le sacamos a quien dirige la libertad ni la responsabilidad. Lo sacamos de la soledad. Es la distinción que desactiva el miedo a perder el control antes de que aparezca.</li></ul></div>
+   </div>
+   <div>
+    <div class="blk"><h3>Cómo se dice hacia afuera</h3>
+    <p class="quote" style="margin-bottom:14px">«Que lo decidido, ocurra.»</p>
+    <p>Si el propósito es la creencia, esta frase es su consecuencia verificable. Dice qué cambia en el mundo si tenemos razón. Es la bisagra entre el porqué y el cómo, y es la que sale en la comunicación.</p></div>
+    <div class="blk"><h3>Lo que el propósito nos obliga</h3>
+    <p>Un propósito que no cambia decisiones es decoración. Este cambia tres:</p>
+    <ul class="gt"><li><b>A quién elegimos para sentar a una mesa:</b> al que puede hacer que las cosas ocurran, no al que da tranquilidad.</li>
+    <li><b>Cómo pedimos información:</b> de a poco y con retorno visible, porque el miedo a perder el control es el obstáculo real.</li>
+    <li><b>De qué respondemos:</b> del seguimiento, sin ambigüedad, y no del resultado entero del negocio.</li></ul></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 2 -->
+<section class="band" id="posicionamiento">
+ <div class="wrap">
+  <div class="chead"><span class="n">2</span><div><h2>Posicionamiento</h2></div></div>
+  <div class="cols">
+   <div class="thesis"><p>Acompañamos cada decisión desde que se toma hasta verla cumplida. Nuestro trabajo empieza cuando el plan está escrito.</p><p class="sub">Método, tablero y talento trabajan juntos, a ritmo constante, durante todo el proceso. Esa continuidad es lo que convierte una buena idea en un resultado.</p></div>
+   <div>
+    <div class="blk"><h3>El lugar vacante</h3>
+    <p>El mercado está fragmentado en silos. Hay jugadores fuertes en cada una de nuestras líneas por separado —dirección fraccionada, consejo asesor, directores independientes, formación de consejeros, talento senior—, pero ninguno los integra bajo un mismo techo modular, con anclaje local y con responsabilidad sobre el cumplimiento.</p>
+    <p class="pull" style="font-size:18px">Ese lugar está vacante y es el que vamos a ocupar.</p></div>
+   </div>
+   <div>
+    <div class="blk"><h3>Sumar es apenas el primer paso</h3>
+    <p>Sumar a la persona indicada es apenas el primer paso. Lo que nos compromete es lo que pasa después: que lo decidido, ocurra.</p></div>
+   </div>
+  </div>
+
+  <h3 class="k" style="margin-top:20px">Los tres diferenciales que lo sostienen</h3>
+  <div class="ppp" style="margin-top:12px">
+   <div class="card"><div class="num" style="font-size:18px">01</div><h4>Integración modular</h4><p style="margin-top:10px">Cuatro líneas combinables bajo una sola lógica y una sola marca. No es un directorio más barato: es un directorio flexible, que responde a las exigencias de crecimiento de cada organización.</p></div>
+   <div class="card"><div class="num" style="font-size:18px">02</div><h4>Gobierno ejecutable y verificable</h4><p style="margin-top:10px">El acompañamiento tiene cadencia fija y el tablero hace visible el avance mientras el resultado todavía es corregible.</p></div>
+   <div class="card"><div class="num" style="font-size:18px">03</div><h4>Cercanía local y calce humano</h4><p style="margin-top:10px">Conocemos la empresa familiar y la corporación, la sucesión y el directorio, los tiempos de este mercado.</p></div>
+  </div>
+
+  <div class="cols two" style="margin-top:44px">
+   <div class="thesis"><p>La frontera que cuidamos.</p></div>
+   <div>
+    <p class="quote">El talento es el insumo. El acompañamiento del proceso es el producto.</p>
+    <p>Si el mercado nos lee como una agencia que consigue ejecutivos, competimos contra el precio de una búsqueda. Vendemos cumplimiento verificable; el talento y el tablero son cómo lo logramos y cómo lo probamos.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 3 -->
+<section class="band alt" id="publicos">
+ <div class="wrap">
+  <div class="chead"><span class="n">3</span><div><h2>A quién le hablamos</h2></div></div>
+  <div class="cols">
+   <div class="thesis"><p>BaaS no tiene un solo público. El valor circula en las dos direcciones, o no circula.</p></div>
+   <div><h3>Dos lados de la misma mesa</h3><p>De un lado, organizaciones de todo tamaño, recorrido e historia que necesitan en la mesa una dirección que hoy no tienen. Del otro, directivos senior que buscan desafíos que su carrera ya no les propone.</p></div>
+   <div><h3>El activo que no se compra</h3><p>Cuanto más capilar es la red y mejor el encuentro entre desafío y capacidad, más valor circula y más difícil de replicar es lo que hacemos.</p><p class="pull" style="font-size:18px">Ahí está el activo que no se compra.</p></div>
+  </div>
+
+  <div class="side"><i></i><h3 class="k">Lado empresa</h3></div>
+  <div class="cols two">
+   <div><p>Brindamos un board que se puede armar. Elige quién se sienta, en qué dedicación, por cuánto tiempo y con qué formato de trabajo.</p><p>Y conviene separar dos cosas que se confunden: <b>dedicación fraccionada no es dedicación reducida.</b> Lo que se fracciona es la agenda, no el criterio.</p><p style="color:var(--mute);font-size:15px">El servicio se adapta al tamaño, al recorrido, a la historia y a la problemática de cada organización.</p></div>
+   <div class="grid3" style="grid-template-columns:repeat(2,minmax(0,1fr))" id="segs"></div>
+  </div>
+
+  <div class="side o"><i></i><h3 class="k">Lado talento</h3></div>
+  <div class="cols">
+   <div class="thesis"><p>Ofrecemos al directivo senior desafíos nuevos.</p><p class="sub">Un talento desafiado acompaña distinto. Que lo decidido ocurra depende de que quien se sienta a la mesa esté interesado, no solo disponible.</p></div>
+   <div><h3>A quién convocamos</h3><p>Perfiles con experiencia real de conducción que ya no quieren un rol full-time, pero tienen un capital intelectual enorme y disponible.</p><p>Lo que les damos no es reconocimiento ni un lugar donde descansar el prestigio. Son instancias de resolución que no transitaron —otra industria, otra escala, otro momento del negocio—.</p></div>
+   <div><h3>Lo que les pedimos</h3><p>El que viene a poner su sello se aburre en la tercera reunión; el que viene a resolver algo nuevo se involucra.</p><p>Lo que les pedimos es capacidad técnica real de ejecutar.</p><p class="pull" style="font-size:18px">La confianza se construye; la capacidad se trae.</p></div>
+  </div>
+
+  <div class="cols two" style="margin-top:44px">
+   <div class="thesis"><p>Qué mueve la decisión.</p></div>
+   <div><p>La contratación de un servicio como el nuestro es emocional antes que racional. Nadie compra horas de un ejecutivo: compra la satisfacción de un deseo profundo, y recién después busca los argumentos que justifiquen esa compra ante sí mismo y ante terceros.</p><p>Leído con la grilla motivacional de Steven Reiss —los dieciséis deseos básicos del Reiss Motivation Profile—, el mapa se ordena. De los dieciséis, apenas un puñado mueve esta decisión. Conviene saber cuáles, porque determinan con qué se abre una conversación y con qué se cierra.</p></div>
+  </div>
+
+  <h3 class="k" style="margin-top:28px">Los cuatro motores principales</h3>
+  <p style="color:var(--mute);margin-bottom:14px">Son los deseos que más pesan en esta compra: con ellos se abre la conversación y con ellos se cierra.</p>
+  <div class="grid4" id="mot1"></div>
+
+  <h3 class="k" style="margin-top:34px">Los cuatro motores secundarios</h3>
+  <p style="color:var(--mute);margin-bottom:14px">No cierran la venta, pero segmentan y matizan el mensaje según con quién estemos hablando.</p>
+  <div class="grid4" id="mot2"></div>
+  <p style="max-width:52em;margin-top:18px">Y hay deseos que no mueven esta decisión: contacto social, romance, actividad física e idealismo —este último solo pesa en fundadores de impacto social—. Nombrarlos también sirve: nos evita escribir piezas que apuntan a lugares donde no hay nadie.</p>
+
+  <h3 class="k" style="margin-top:34px">Los cuatro perfiles de comprador</h3>
+  <p style="max-width:52em">Las combinaciones típicas. No son segmentos de mercado —eso ya lo resolvimos arriba—: son formas de desear que atraviesan los segmentos.</p>
+  <div class="scroll"><table class="stack" id="perf"><thead><tr><th>Perfil</th><th>Qué lo mueve</th><th>Qué le pasa</th><th>De qué le hablamos</th></tr></thead><tbody></tbody></table></div>
+ </div>
+</section>
+
+<!-- 4 -->
+<section class="band" id="promesa">
+ <div class="wrap">
+  <div class="chead"><span class="n">4</span><div><h2>Promesa de valor</h2></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>Respondemos por lo que controlamos. El resultado del negocio depende de la organización entera; que lo decidido ocurra, depende de nosotros.</p><p class="sub">Ninguna pieza de comunicación puede correr esta promesa hacia el cliente: la ambigüedad acá nos deja sin diferencial.</p></div>
+   <div>
+    <p>Quien dirige decide todos los días. El desafío es saber qué de todo eso se cumplió. Nuestra promesa nombra ese dolor y se sostiene en cinco compromisos que cada cliente puede verificar:</p>
+    <div class="scroll"><table class="stack" id="prom"><thead><tr><th>Compromiso</th><th>Cómo se verifica</th></tr></thead><tbody></tbody></table></div>
+   </div>
+  </div>
+
+  <div class="cols two" style="margin-top:44px">
+   <div class="thesis"><p>Las cuatro condiciones innegociables.</p><p class="sub">Para que lo decidido efectivamente ocurra tienen que darse condiciones que no son opcionales. Son la contracara de la promesa y se acuerdan antes de empezar.</p></div>
+   <div class="grid3" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="card topo"><div class="num">01</div><h4>Objetivos y KPIs desde el día uno</h4><p class="mute">Sin metas claras no hay ejecución que acompañar ni progreso que verificar.</p></div>
+    <div class="card topo"><div class="num">02</div><h4>Selección y seguimiento a cargo de BaaS</h4><p class="mute">El acompañamiento senior y el tablero trabajan a ritmo fijo y sin interrupciones. Lo que hace que las cosas pasen no es la reunión brillante: es la reunión que se repite.</p></div>
+    <div class="card topo"><div class="num">03</div><h4>Capacidad técnica real del talento asignado</h4><p class="mute">No alcanza con el vínculo y la confianza. Quien se sienta a la mesa tiene que poder llevar los objetivos adelante.</p></div>
+    <div class="card topo"><div class="num">04</div><h4>Compromiso compartido sobre el resultado</h4><p class="mute">La ejecución involucra a la organización entera. El seguimiento que la sostiene es nuestro.</p></div>
+   </div>
+  </div>
+  <div class="important"><span>IMPORTANTE</span><p>Dedicación fraccionada no es dedicación reducida. Lo que se fracciona es la agenda, no el criterio.</p></div>
+ </div>
+</section>
+
+<!-- 5 -->
+<section class="band alt" id="oferta">
+ <div class="wrap">
+  <div class="chead"><span class="n">5</span><div><h2>La oferta</h2></div></div>
+  <div class="cols">
+   <div class="thesis"><p>Cuatro líneas, una sola lógica: el criterio que el momento exige, por el tiempo que lo exige.</p></div>
+   <div><p>Un servicio modular y recurrente. Cada empresa toma una línea o varias, las combina y las escala según su momento —a fracción del costo de una estructura full-time y solo por el tiempo que las necesita—.</p></div>
+   <div><h3>Qué incluye</h3><ul class="gt"><li>Criterio senior sobre los desafíos que la empresa se propone.</li><li>Selección del talento C-level por capacidad técnica real de ejecutar.</li><li>Acompañamiento de la ejecución de principio a fin, con seguimiento semanal.</li><li>Un tablero que hace visible el avance y advierte las desviaciones a tiempo.</li></ul></div>
+  </div>
+
+  <h3 class="k" style="margin-top:20px">Las cuatro líneas</h3>
+  <div class="grid4 lin" style="margin-top:12px">
+   <div class="card"><div class="ic"><svg viewBox="0 0 32 32"><rect x="6" y="13" width="20" height="6" rx="1"/><circle cx="10" cy="8" r="2.5"/><circle cx="16" cy="8" r="2.5"/><circle cx="22" cy="8" r="2.5"/><path d="M9 19v6M23 19v6"/></svg></div><h4>Advisory Board<small>Consejo asesor</small></h4><p class="mute">Consejo asesor dedicado a la empresa.</p></div>
+   <div class="card"><div class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10"/><path d="M16 6v10l8.7 5"/></svg></div><h4>Fractional Executives<small>Dirección fraccionada</small></h4><p class="mute">Dirección C-level (CFO, COO, CMO, CHRO) a fracción de tiempo y costo.</p></div>
+   <div class="card"><div class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="9" r="4"/><path d="M8 26c0-5 3.6-8 8-8s8 3 8 8"/><path d="m21 12 2 2 4-4"/></svg></div><h4>Independent Board Members<small>Directores independientes</small></h4><p class="mute">Directores independientes para el directorio formal.</p></div>
+   <div class="card"><div class="ic"><svg viewBox="0 0 32 32"><path d="M6 24 16 8l10 16z"/><path d="M11 24l5-8 5 8"/></svg></div><h4>Industry Expert Pools<small>Expertos por vertical</small></h4><p class="mute">Expertos por vertical, on demand.</p></div>
+  </div>
+
+  <div class="tablero">
+   <div><p class="lbl" style="color:var(--dorado)">El tablero</p><h3 style="font-size:clamp(24px,2.6vw,32px);font-weight:300">Es infraestructura de ejecución.</h3><p>Convierte cada acción en un hito con responsable y fecha, dispara la alerta cuando un indicador se desvía y hace visible el bloqueo apenas aparece.</p><p>Es, además, la prueba tangible de la promesa. Por eso está desde el día uno del servicio, en la forma que el proyecto permita.</p></div>
+   <div class="tbl" aria-label="Esquema ilustrativo del tablero de seguimiento">
+    <div class="h"><span>Hito</span><span>Responsable</span><span>Fecha</span><span></span></div>
+    <div><span>Plan de reestructuración comercial</span><span>COO</span><span>15/12</span><i style="background:#9fc28a"></i></div>
+    <div><span>Nuevo esquema de reporting al directorio</span><span>CFO</span><span>20/12</span><i style="background:#9fc28a"></i></div>
+    <div><span>Ingreso al segundo canal de distribución</span><span>CMO</span><span>10/01</span><i style="background:#C7BE93"></i></div>
+    <div><span>Protocolo familiar: primera versión</span><span>Advisory Board</span><span>30/01</span><i style="background:#d9846f"></i></div>
+    <p style="font-size:12px;color:#a9adb6;margin:4px 0 0">Esquema ilustrativo. Los hitos son de ejemplo.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 6 -->
+<section class="band" id="voz">
+ <div class="wrap">
+  <div class="chead"><span class="n">6</span><div><h2>Voz, tono y lenguaje</h2></div></div>
+  <div class="cols">
+   <div class="thesis"><p>Este capítulo no define cómo suena la marca. Define cómo piensa, cómo se vincula y cómo se expresa en cada interacción.</p></div>
+   <div>
+    <div class="blk"><h3>Voz</h3><p><b>BaaS</b> habla como alguien que ya se sentó en esa silla. No explica desde afuera: reconoce el problema porque lo vivió. Es la voz de un par con más recorrido, no la de un proveedor que ofrece ni la de un auditor que evalúa.</p></div>
+    <div class="blk"><h3>Tono</h3><ul class="gt"><li><b>Firme,</b> sin soberbia.</li><li><b>Cercano,</b> sin exceso de confianza.</li><li><b>Específico:</b> cada afirmación con su evidencia al lado.</li><li><b>Sereno:</b> quien vende tranquilidad no puede comunicar con urgencia.</li></ul></div>
+   </div>
+   <div>
+    <div class="blk"><h3>Lenguaje</h3><p>Hablamos el idioma del directorio cuando estamos en el directorio, y el del dueño cuando estamos frente al dueño. Traducimos siempre: si un término técnico es necesario, se explica en criollo la primera vez y no se vuelve a explicar.</p><p>Usamos verbos de acción, frases cortas y ejemplos reales. Evitamos la jerga de gobierno corporativo usada como credencial, los anglicismos innecesarios y las palabras infladas.</p></div>
+    <div class="blk"><h3>Persona verbal</h3><p>Primera persona del plural, siempre. Y una precisión que cuidamos: no usamos a la empresa como sujeto de las decisiones. Las paredes y el mobiliario no deciden. Decide una persona, y a esa persona le hablamos.</p></div>
+   </div>
+  </div>
+
+  <h3 class="k" style="margin-top:24px">Las reglas de oro</h3>
+  <ol class="oro-list" style="margin-top:12px">
+   <li><b>Nunca prometemos el resultado del negocio.</b><span>Prometemos que lo decidido ocurra.</span></li>
+   <li><b>Nunca hablamos de talento «desperdiciado», «reinsertado» ni «homenajeado».</b><span>Hablamos de experiencia que busca desafío.</span></li>
+   <li><b>Ningún dato sin fuente verificable.</b><span>Un número sin dueño nos resta más de lo que suma.</span></li>
+   <li><b>Ninguna palabra que sirva para cualquiera.</b><span>Si la frase la puede firmar un competidor, se reescribe.</span></li>
+   <li><b>Nada que suene a «te reviso».</b><span>Cualquier formulación que active la defensa de quien dirige está mal escrita.</span></li>
+   <li><b>Si un texto no deja a quien dirige con más control del que tenía antes de leerlo, no es BaaS.</b><span>Es la prueba final de cualquier pieza.</span></li>
+  </ol>
+
+  <div style="margin-top:44px">
+   <h3 class="k">Cómo nos nombramos</h3>
+   <div class="names">
+    <div><p class="say-big"><b>BaaS</b></p><p>Inserto en un texto, el nombre se escribe siempre de la misma forma: con la «B» inicial y la «S» final en mayúscula, y las dos «a» centrales en minúscula.</p></div>
+    <div><p class="say-big nw"><b>BaaS</b> | Board as a Service,</p><p>En su uso institucional, junto con la bajada, el nombre va en negrita. Lo separa de la bajada una barra vertical, y después de la bajada va una coma. La bajada respeta su propia escritura: mayúscula en «Board» y «Service»; «as a», en minúscula.</p></div>
+   </div>
+   <div class="cols two" style="margin-top:6px">
+    <div class="thesis"><p>Cada aparición suma o resta reconocimiento.</p></div>
+    <div><p>El nombre es el primer punto de contacto con una marca y el que más veces se repite. Aparece en una propuesta, en un informe de directorio, en una firma de correo o en una conversación entre dos empresarios que se recomiendan.</p></div>
+   </div>
+   <div class="wr" style="margin-top:14px">
+    <div class="ok"><h4>Escritura correcta</h4><p><b>BaaS</b></p><p><b>BaaS</b> | Board as a Service,</p></div>
+    <div class="no"><h4>Escritura incorrecta</h4><p>BAAS · Baas · baas</p><p>BAAS - Board As A Service</p></div>
+   </div>
+   <p style="margin-top:14px;color:var(--mute)">La coherencia se demuestra en los detalles antes que en los grandes enunciados. Respetarla es cuidar la identidad que compartimos.</p>
+  </div>
+
+  <div class="cols two" style="margin-top:44px">
+   <div class="thesis"><p>Una bío no es un CV.</p><p class="sub">El CV enumera lo que alguien hizo; la bío cuenta para qué le sirve eso al cliente.</p></div>
+   <div>
+    <h3 class="k">Cómo estructurar la bío de cada integrante</h3>
+    <p>Cinco bloques, siempre en el mismo orden:</p>
+    <div class="scroll"><table class="stack"><thead><tr><th>Bloque</th><th>Qué dice</th></tr></thead><tbody>
+     <tr><td data-l="Bloque"><b>01 · La mirada</b></td><td data-l="Qué dice">Una frase que dice qué decisiones acompaña y a quién. Abre con el cliente, no con el título ni con el año de egreso.</td></tr>
+     <tr><td data-l="Bloque"><b>02 · La prueba</b></td><td data-l="Qué dice">Dos o tres hitos concretos que respaldan esa mirada: cargos, tipos de operación, sectores, jurisdicciones. Sin nombres de clientes ni cifras confidenciales.</td></tr>
+     <tr><td data-l="Bloque"><b>03 · La forma de trabajar</b></td><td data-l="Qué dice">Una o dos frases propias sobre cómo ejerce. Es lo que impide que una bío se pueda intercambiar con otra.</td></tr>
+     <tr><td data-l="Bloque"><b>04 · Las áreas</b></td><td data-l="Qué dice">Hasta cuatro, separadas por punto medio.</td></tr>
+     <tr><td data-l="Bloque"><b>05 · Las credenciales</b></td><td data-l="Qué dice">Formación, certificaciones, colegiaciones e idiomas, en un bloque final y compacto.</td></tr>
+    </tbody></table></div>
+    <h3 style="margin-top:28px">Cómo se redacta</h3>
+    <ul class="gt">
+     <li>Primera persona del singular en la web y en LinkedIn. Tercera persona en propuestas, presentaciones y prensa.</li>
+     <li>«Equipo» para hablar de quienes integramos la organización. «Red» para los colegas de otras jurisdicciones con los que trabajamos. «Integrantes» para nombrar a las personas.</li>
+     <li>Tres extensiones: completa (120 a 150 palabras) para la web; breve (40 a 50 palabras) para propuestas; una línea para firmas de correo y paneles.</li>
+     <li>Misma extensión y mismo orden para todos los integrantes. La simetría también comunica: ninguna bío pesa más que la organización.</li>
+     <li>Cada afirmación con su evidencia al lado. «Amplia experiencia» no dice nada; «fui gerente de legales de una energética» lo dice todo.</li>
+     <li>Lo que no ayuda al cliente a elegir, sobra. Una bío no es la lista de todo lo que alguna vez se hizo.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 7 -->
+<section class="band alt" id="historia">
+ <div class="wrap">
+  <div class="chead"><span class="n">7</span><div><h2>Historia</h2></div></div>
+  <div class="cols">
+   <div class="thesis"><p>Los servicios se comparan. Las historias se eligen.</p></div>
+   <div><p><b>BaaS</b> nació de la experiencia de quienes la fundaron, en años de mesas compartidas, de decisiones propias y ajenas, de aprendizajes.</p><p>Este capítulo reúne ese origen. Cuenta quiénes somos antes de contar qué hacemos: de dónde venimos, qué nos llevó a trabajar juntas y qué nos mueve, cada día, a sentarnos a la mesa de otros.</p></div>
+   <div><p>Lo contamos porque la confianza se construye sobre lo que se conoce.</p><p style="color:var(--mute);font-size:15px">Las bíos que siguen respetan la estructura del capítulo 6: la mirada, la prueba, la forma de trabajar y, al final, las credenciales. Cada una cierra con la razón por la que eligió a su socia.</p></div>
+  </div>
+
+  <div class="bios">
+   <article class="bio">
+    <header><div class="av">MT</div><div><h4>María Eugenia Tibessio</h4><p>Directora de BaaS | Board as a Service</p></div></header>
+    <div class="bd">
+     <p>Soy ejecutiva con más de 30 años de trayectoria liderando procesos de transformación, crecimiento regional y toma de decisiones estratégicas en entornos multinacionales y multiindustria: minería, oil &amp; gas, plásticos, packaging, industria farmacéutica y dispositivos médicos.</p>
+     <p>Actualmente soy Presidente de DuPont Argentina y lidero el negocio de Healthcare para Latinoamérica, con foco en innovación, expansión de mercados y gestión estratégica, y con responsabilidad integral sobre el P&amp;L.</p>
+     <p>Tengo sólida experiencia en desarrollo de negocios B2B, liderazgo corporativo y gestión de contextos complejos: transformación organizacional, manejo de crisis y construcción de equipos diversos y de alto desempeño. He liderado la creación de mercados y la expansión regional, he desarrollado estrategias desde cero, las he escalado en distintos países y las he consolidado como referencias regionales.</p>
+     <p>Mi enfoque integra visión de largo plazo, criterio institucional y ejecución consistente, con impacto directo en decisiones de inversión, portafolio, estructura organizacional y crecimiento sostenible.</p>
+     <p>Participo en directorios y organizaciones empresariales y sociales, en agendas de gobernanza, sostenibilidad, diversidad e impacto positivo. Integro los directorios de AmCham Argentina, IDEA, CEADS, IAE (Instituto Argentino del Envase), CyQUIM, United Way Argentina, ACDE y GhidiniRodil, y soy miembro del Consejo Consultivo del MBA de la UCEMA.</p>
+     <p class="cred">Contadora Pública por la Universidad del Salvador. Especialización en Marketing por SUNY University at Albany (Estados Unidos), posgrado en Negocios en Francia, posgrado en la Universidad de San Andrés y Maestría en Dirección de Empresas de la UCEMA.</p>
+     <div class="why"><h5>¿Por qué elegí a Caro?</h5>
+      <p>Elegir a un socio es elegir a la persona con quien quiero construir y atravesar desafíos. Con Caro compartimos valores, curiosidad y una forma muy parecida de entender el liderazgo.</p>
+      <p>Pero, sobre todo, porque somos diferentes. Cada una aporta una mirada complementaria y desafía las ideas de la otra desde el respeto.</p>
+      <p>Yo vi en Caro una combinación poco común de inteligencia, sensibilidad y capacidad para transformar conversaciones en acción. Su capacidad para generar vínculos, trabajar en equipo y conectar personas, sumada a su experiencia, su visión estratégica y la convicción muy fuerte de que el crecimiento se construye acompañando a otros, fue determinante para querer llevar adelante este proyecto junto a ella.</p>
+      <p style="margin:0"><b>Por eso la elijo a Caro como compañera de esta aventura, porque esta vez el objetivo ya no es individual: es nuestro.</b></p>
+     </div>
+    </div>
+   </article>
+   <article class="bio">
+    <header><div class="av">CG</div><div><h4>Carolina Garcés</h4><p>Directora de BaaS | Board as a Service</p></div></header>
+    <div class="bd">
+     <p>Soy ejecutiva con más de dos décadas de trayectoria integrando estrategia de negocio, liderazgo y gestión de personas. Mi fortaleza es comprender los desafíos del negocio y traducirlos en decisiones concretas sobre estructura, talento y liderazgo.</p>
+     <p>Mis primeros años en el sector bancario me dieron una base en negocio y finanzas, que luego potencié en una empresa multinacional líder en servicios de capital humano. Allí ocupé posiciones ejecutivas con responsabilidad sobre la operación de clientes en industrias como automotriz, oil &amp; gas, energía, laboratorios, health &amp; care, servicios financieros, retail y consumo masivo, participando en la estrategia de cada operación para diseñar soluciones de talento que les permitieran escalar su actividad.</p>
+     <p>Fundé ONIX Human Resources Consulting desde cero y hoy acompañamos a más de 230 clientes en Argentina y la región, con más de 130 posiciones C-Level cubiertas.</p>
+     <p>Mi abordaje parte del negocio y su estrategia, para intervenir sobre lo que determina la capacidad de ejecución: estructura, liderazgo, talento, procesos y cultura. Tengo sólida experiencia en desarrollo de negocios B2B y en contextos de alta exigencia, como crecimiento acelerado, reestructuraciones y conformación de equipos de alto desempeño.</p>
+     <p>Hoy extiendo esa experiencia al Advisory y al Board as a Service, acompañando a empresas que buscan profesionalizar su gestión y sumar experiencia ejecutiva independiente a sus mesas de dirección. Parto de una convicción: los resultados sostenibles se construyen cuando la estrategia, el modelo de gestión y las personas avanzan en la misma dirección.</p>
+     <p class="cred">Licenciada en Psicología por la Universidad del Salvador, con posgrado en Psicología Sistémica. Formación en negociación y gestión por competencias en la Universidad Torcuato Di Tella y en coaching en la UCEMA. Fue Profesora Titular de Psicología Organizacional en la Universidad Tecnológica Nacional.</p>
+     <div class="why"><h5>¿Por qué Euge?</h5>
+      <p>Elegir a una socia no es solamente elegir a alguien con experiencia, conocimientos o una buena red de contactos. Para mí, es elegir a la persona con quien quiero construir, atravesar desafíos y compartir un proyecto en el que ambas vamos a poner mucho de nosotras. Y por eso elijo a Euge.</p>
+      <p>Eugenia es una buena persona. Y para mí eso no es un detalle: es la base de cualquier sociedad. Dedica parte de su tiempo y de sus conocimientos a causas que trascienden lo profesional, tiene una verdadera vocación por dejar huella, y quienes han trabajado o compartido espacios con ella siempre hablan desde un lugar positivo.</p>
+      <p>También admiro profundamente su capacidad de esfuerzo y su determinación. Cuando se propone un objetivo, trabaja para alcanzarlo. No importa el día ni la hora: está permanentemente buscando cómo crecer, aprender, formarse y evolucionar. Euge, además, es cálida, divertida, inteligente y tiene una energía que hace que trabajar juntas también sea algo que disfrutemos.</p>
+      <p style="margin:0"><b>Por eso la elijo como compañera de esta aventura, porque esta vez el objetivo ya no es individual: es nuestro.</b></p>
+     </div>
+    </div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<!-- 8 -->
+<section class="band oro" id="identidad">
+ <div class="wrap cols two">
+  <div><span style="font-size:clamp(56px,7vw,88px);font-weight:300;line-height:1">8</span><p style="margin-top:8px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;font-weight:500">Parte dos</p></div>
+  <div><h2 style="font-size:clamp(28px,3.6vw,44px);font-weight:300">Guía de aplicación de la identidad visual</h2>
+   <p style="margin-top:14px;max-width:44em;font-size:18px">La guía garantiza que cada aplicación de la marca, ya sea en medios digitales, impresos o de publicidad exterior, mantenga la coherencia visual y comunicacional.</p>
+   <p style="max-width:44em;font-size:18px">El objetivo es que cada punto de contacto con las organizaciones, los directivos y los aliados de <b>BaaS</b>, actuales y futuros, refuerce los valores y la propuesta de la marca, y refleje lo que la sostiene: criterio, confianza, cercanía y el compromiso de que lo decidido, ocurra.</p></div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="cols two" style="margin-bottom:28px">
+   <div class="thesis"><p>Sobriedad y precisión.</p></div>
+   <div><p>El estilo visual de <b>BaaS</b> | Board as a Service, está diseñado para expresar, con sobriedad y precisión, la esencia de nuestro trabajo: dirección senior compartida, acompañamiento en la ejecución, seguimiento constante y evidencia que sostiene cada decisión.</p><p>El símbolo es una flecha armada con triángulos en progresión: piezas que se suman y avanzan en una misma dirección. Es lo decidido, en movimiento.</p></div>
+  </div>
+  <div class="chead"><div><h2>Masterbrand</h2></div></div>
+  <div class="specs">
+   <figure class="spec"><div class="plate tall"><img src="assets/baas-vertical.svg" alt="Masterbrand de BaaS, versión vertical a color"></div><figcaption><b>Vertical, principal.</b> Es la que usamos por defecto.</figcaption></figure>
+   <figure class="spec"><div class="plate"><img src="assets/baas-horizontal.svg" alt="Masterbrand de BaaS, versión horizontal a color"></div><figcaption><b>Horizontal.</b> Alternativa para formatos apaisados.</figcaption></figure>
+  </div>
+  <p style="margin-top:18px;max-width:52em">La masterbrand es el principal identificador visual y su uso correcto es crucial para mantener la consistencia de la marca en todos los medios.</p>
+  <div class="rule"><span>No estirar</span><span>No comprimir</span><span>No aplicar sombras</span><span>Respetar sus proporciones</span></div>
+ </div>
+</section>
+
+<section class="band alt">
+ <div class="wrap">
+  <div class="chead"><div><h2>Masterbrand alternativa</h2></div></div>
+  <div class="specs">
+   <figure class="spec"><div class="plate tall"><img src="assets/baas-vertical-dorado.svg" alt="Masterbrand alternativa de BaaS en dorado, vertical"></div><figcaption><b>Dorada, vertical.</b></figcaption></figure>
+   <figure class="spec"><div class="plate"><img src="assets/baas-horizontal-dorado.svg" alt="Masterbrand alternativa de BaaS en dorado, horizontal"></div><figcaption><b>Dorada, horizontal.</b> Para formatos apaisados.</figcaption></figure>
+  </div>
+  <div class="chead" style="margin-top:44px"><div><h2>Masterbrand en grises</h2></div></div>
+  <div class="specs">
+   <figure class="spec"><div class="plate tall"><img src="assets/baas-vertical-grises.svg" alt="Masterbrand de BaaS en grises, vertical"></div><figcaption><b>En grises, vertical.</b> Para reproducción monocromática.</figcaption></figure>
+   <figure class="spec"><div class="plate"><img src="assets/baas-horizontal-grises.svg" alt="Masterbrand de BaaS en grises, horizontal"></div><figcaption><b>En grises, horizontal.</b> Para formatos apaisados.</figcaption></figure>
+  </div>
+  <div class="rule"><span>No estirar</span><span>No comprimir</span><span>No aplicar sombras</span><span>Respetar sus proporciones</span></div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Masterbrand sobre fondos de color</h2></div></div>
+  <p style="max-width:52em">La marca presenta variantes auxiliares en su aplicación sobre los colores primarios de la identidad. Se usan siempre respetando las visuales aquí representadas: sobre blanco, neutro y dorado, la versión a color; sobre azul y azul noche, la versión en negativo con el símbolo dorado.</p>
+  <div class="fondos" style="margin-top:20px">
+   <figure><img src="assets/fondo-blanco.svg" alt="Masterbrand sobre fondo blanco"></figure>
+   <figure><img src="assets/fondo-neutro.svg" alt="Masterbrand sobre fondo neutro"></figure>
+   <figure><img src="assets/fondo-dorado.svg" alt="Masterbrand sobre fondo dorado"></figure>
+   <figure><img src="assets/fondo-azul.svg" alt="Masterbrand en negativo sobre fondo azul"></figure>
+   <figure><img src="assets/fondo-azulnoche.svg" alt="Masterbrand en negativo sobre fondo azul noche"></figure>
+  </div>
+ </div>
+</section>
+
+<section class="band alt">
+ <div class="wrap">
+  <div class="chead"><div><h2>Otras aplicaciones del isologotipo</h2></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>El símbolo puede hablar solo.</p></div>
+   <div><p>La identidad visual representada por el isologotipo puede presentarse con estas alternativas, y no de otra forma: el símbolo contenido en un círculo, en las cuatro combinaciones de color de la marca. Es la versión para perfiles, avatares, sellos y espacios reducidos, cuando el nombre ya está presente en la pieza o al lado de ella.</p></div>
+  </div>
+  <div class="circs">
+   <figure><img src="assets/baas-circulo-1.svg" alt="Símbolo en grises sobre círculo neutro"><figcaption>Grises sobre neutro</figcaption></figure>
+   <figure><img src="assets/baas-circulo-2.svg" alt="Símbolo azul sobre círculo dorado"><figcaption>Azul sobre dorado</figcaption></figure>
+   <figure><img src="assets/baas-circulo-3.svg" alt="Símbolo dorado sobre círculo azul noche"><figcaption>Dorado sobre azul noche</figcaption></figure>
+   <figure><img src="assets/baas-circulo-4.svg" alt="Símbolo en grises claros sobre círculo azul noche"><figcaption>Grises sobre azul noche</figcaption></figure>
+  </div>
+  <div class="rule"><span>No estirar</span><span>No comprimir</span><span>No aplicar sombras</span><span>Respetar sus proporciones</span></div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Proporciones y área de resguardo</h2></div></div>
+  <div class="cols resgrid">
+   <div class="resbox"><img src="assets/resguardo.svg" alt="Área de resguardo del isologotipo de BaaS: x equivale a la altura de la letra B del logotipo"></div>
+   <div class="restext"><p><b>Siempre debe presentarse en su forma original</b> y no alterarse, expandirse ni distorsionarse cambiando las proporciones de ninguna manera.</p><p class="resoro">El área coloreada, determinada por la altura de la letra «B» del logo, es el espacio de resguardo que nunca debe ser invadido por otro objeto.</p></div>
+  </div>
+  <div class="chead" style="margin-top:44px"><div><h2>Tamaños mínimos</h2></div></div>
+  <div class="cols two">
+   <div><p>La masterbrand y sus variantes tienen un límite en su aplicación mínima, dado por el umbral de reproducción o emisión que permite leer todos sus componentes.</p><p><b>10 mm de alto</b> es la medida mínima sugerida para aplicar la marca. Por debajo de 20 mm, se aplica sin la bajada.</p><p><b>20 mm de alto</b> es la medida mínima sugerida para aplicarla con la bajada «Board as a Service».</p></div>
+   <div>
+    <div class="sizes">
+     <div><span>10 mm</span><img src="assets/baas-horizontal-sin-bajada.svg" alt="Masterbrand horizontal sin bajada a 10 mm de alto" style="height:10mm"></div>
+     <div><span>15 mm</span><img src="assets/baas-horizontal-sin-bajada.svg" alt="Masterbrand horizontal sin bajada a 15 mm de alto" style="height:15mm"></div>
+     <div><span>20 mm</span><img src="assets/baas-horizontal.svg" alt="Masterbrand horizontal con bajada a 20 mm de alto, medida mínima con la bajada" style="height:20mm"></div>
+    </div>
+    <p style="font-size:14px;color:var(--mute);margin-top:10px">Referencias a escala real. En pantalla, la medida puede variar según el dispositivo.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="band alt">
+ <div class="wrap">
+  <div class="chead"><div><h2>Colores principales</h2></div></div>
+  <div class="cols two">
+   <div><p>El azul noche y el dorado sostienen la marca: el primero aporta solidez y criterio; el segundo, la calidez del vínculo. Los grises y los neutros ordenan y dan aire.</p><p>La paleta se usa de forma coherente en todos los puntos de contacto para garantizar una imagen visual sólida y reconocible.</p></div>
+   <div class="pal" id="pal"></div>
+  </div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Tipografía principal: Kanit</h2></div></div>
+  <div class="type">
+   <div><div class="aa">Aa</div><p style="margin-top:20px;max-width:34em">La familia tipográfica Kanit es una de las fuentes de Google y ofrece muchas alternativas de aplicación. Esa versatilidad permite usarla en textos oscuros sobre fondos blancos o claros, garantizando la legibilidad. Esta misma página está compuesta en Kanit.</p>
+    <p style="margin-top:20px;font-size:15px;font-weight:300;letter-spacing:.02em"><span style="color:var(--oroT);font-weight:500;font-size:12px;letter-spacing:.1em">KANIT LIGHT</span><br>ABCDEFGHIJKLMNÑOPQRSTUVWXYZ<br>abcdefghijklmnñopqrstuvwxyz<br>1234567890 %/&amp;?!</p>
+    <p style="margin-top:14px;font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--azulT)"><span style="color:var(--oroT);font-size:12px;letter-spacing:.1em">KANIT MEDIUM</span><br>ABCDEFGHIJKLMNÑOPQRSTUVWXYZ<br>abcdefghijklmnñopqrstuvwxyz<br>1234567890 %/&amp;?!</p></div>
+   <div class="w">
+    <div style="font-weight:200"><span>Thin · Extra Light</span><span>Grandes titulares</span></div>
+    <div style="font-weight:300"><span>Light</span><span>Texto corrido</span></div>
+    <div style="font-weight:400"><span>Regular</span><span>Subtítulos y bajadas</span></div>
+    <div style="font-weight:500"><span>Medium</span><span>Destacados</span></div>
+    <div style="font-weight:600"><span>Semibold</span><span>Títulos</span></div>
+    <div style="font-weight:700"><span>Bold · Black</span><span>Cifras y piezas de impacto</span></div>
+    <div class="typesample"><div><b>Board as a Service</b><small>Dirección senior compartida. Seguimiento constante. Lo decidido, ocurra.</small></div><span>Aa</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="band alt" id="backgrounds">
+ <div class="wrap">
+  <div class="chead"><div><h2>Backgrounds</h2></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>Un fondo propio hace que la marca se reconozca antes de leerla.</p></div>
+   <div><p>Cuatro fondos construidos con los triángulos del símbolo, para presentaciones, pantallas, papelería y piezas digitales. La escala de aplicación se estima según el tamaño y la extensión de la superficie a cubrir.</p></div>
+  </div>
+  <div class="bgs">
+   <figure><img src="assets/bg-blanco.jpg" alt="Fondo blanco con triángulos en grises muy suaves" loading="lazy"><figcaption><b>Triángulos sobre blanco</b> · Para piezas de lectura.</figcaption></figure>
+   <figure><img src="assets/bg-azul.jpg" alt="Fondo azul noche con grandes triángulos en tonos de azul" loading="lazy"><figcaption><b>Triángulos en azul noche</b> · Para portadas y pantallas.</figcaption></figure>
+   <figure><img src="assets/bg-mosaico.jpg" alt="Fondo de mosaico de triángulos en azules, dorados y grises" loading="lazy"><figcaption><b>Mosaico de la paleta</b> · Para papelería y objetos.</figcaption></figure>
+   <figure><img src="assets/bg-dorado.jpg" alt="Fondo dorado con triángulos en línea" loading="lazy"><figcaption><b>Línea sobre dorado</b> · Para separadores y piezas de apertura.</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section class="band" id="aplicaciones">
+ <div class="wrap">
+  <div class="chead"><div><h2>Aplicaciones de la identidad</h2></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>La marca no vive en el manual: vive en la mesa del cliente.</p></div>
+   <div><p>Papelería institucional, cuadernos, tarjetas y objetos de uso cotidiano. La masterbrand convive con el mosaico de la paleta: el mosaico abre, la masterbrand firma.</p><p style="font-size:14px;color:var(--mute)">Vistas ilustrativas de aplicación. Cada pieza de producción se valida con su proveedor.</p></div>
+  </div>
+  <figure class="mosaic"><img src="assets/aplicaciones.jpg" alt="Aplicaciones de BaaS: taza, cuadernos, hoja membretada, tarjeta personal, bolígrafo y botella con la masterbrand y el mosaico de triángulos" loading="lazy"></figure>
+ </div>
+</section>
+
+<section class="band alt" id="redes">
+ <div class="wrap">
+  <div class="chead"><div><h2>El símbolo en los perfiles de redes sociales</h2></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>En redes, el perfil es un círculo. Ahí el símbolo habla solo.</p></div>
+   <div><p>En la foto de perfil usamos el símbolo sin el logotipo, en una de sus versiones circulares. El nombre <b>BaaS</b> ya aparece junto al perfil, así que no hace falta repetirlo.</p><p>La versión principal es el símbolo dorado sobre azul noche. La alternativa, el símbolo azul sobre dorado.</p></div>
+  </div>
+  <div class="avs">
+   <figure><div class="avring"><img src="assets/baas-circulo-3.svg" alt="Perfil con el símbolo dorado sobre azul noche"></div><figcaption><b>Principal</b> · Dorado sobre azul noche</figcaption><div class="avsm"><img src="assets/baas-circulo-3.svg" alt="" width="80" height="80"><img src="assets/baas-circulo-3.svg" alt="" width="48" height="48"></div></figure>
+   <figure><div class="avring"><img src="assets/baas-circulo-2.svg" alt="Perfil con el símbolo azul sobre dorado"></div><figcaption><b>Alternativa</b> · Azul sobre dorado</figcaption><div class="avsm"><img src="assets/baas-circulo-2.svg" alt="" width="80" height="80"><img src="assets/baas-circulo-2.svg" alt="" width="48" height="48"></div></figure>
+  </div>
+  <h3 class="k" style="margin-top:44px">Así se ve en un posteo</h3>
+  <div class="posts">
+   <figure>
+    <div class="li">
+     <div class="ph"><img src="assets/baas-circulo-3.svg" alt="" class="pav"><div><b>BaaS | Board as a Service</b><span>Dirección senior a la medida de cada organización</span><span>2 h</span></div></div>
+     <div class="ptx"><p>Hay organizaciones que tienen todo para crecer. No les falta visión. No les falta equipo. Les falta alguien con quien sostener lo que se animaron a definir.</p><p>En <b>BaaS</b> armamos el board que cada empresa necesita y sostenemos el seguimiento, semana a semana.</p></div>
+     <div class="pimg"><img src="assets/baas-negativo.svg" alt=""><p>Nadie debe<br>dirigir en soledad.<br><b>Que lo decidido, ocurra.</b></p></div>
+     <div class="pbar"><span>Recomendar</span><span>Comentar</span><span>Compartir</span><span>Enviar</span></div>
+    </div>
+    <figcaption><b>LinkedIn</b> · Perfil con el símbolo dorado sobre azul noche</figcaption>
+   </figure>
+   <figure>
+    <div class="ig">
+     <div class="ph"><img src="assets/baas-circulo-3.svg" alt="" class="pav"><div><b>baas.boardasaservice</b><span>Buenos Aires, Argentina</span></div></div>
+     <div class="sqw" role="img" aria-label="Posteo con el mosaico de triángulos de la marca y una frase"><div>No le quitamos el volante:<br><b>le damos el tablero.</b></div></div>
+     <div class="icons"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.3 3.2 5 6.6 5c2 0 3.4 1.1 4.4 2.5C12 6.1 13.4 5 15.4 5 18.8 5 21 8.3 19.5 11.8 17.5 16.4 12 21 12 21z"/></svg><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 1 1-3.3-6.5A8 8 0 0 1 20 11.5zM20 20l-2.2-4.4"/></svg><svg viewBox="0 0 24 24"><path d="M21 3 3 10.5l7 2.5 2.5 7L21 3zM10 13l5-5"/></svg></div>
+     <div class="cap"><p><b>baas.boardasaservice</b> Lo que hace que las cosas pasen no es la reunión brillante: es la reunión que se repite.</p></div>
+    </div>
+    <figcaption><b>Instagram</b> · Perfil con el símbolo dorado sobre azul noche</figcaption>
+   </figure>
+  </div>
+  <p style="font-size:14px;color:var(--mute);margin-top:12px">Simulaciones ilustrativas de aplicación. Los nombres de usuario y los textos de los posteos son de ejemplo.</p>
+ </div>
+</section>
+</main>
+
+<footer class="band">
+ <div class="wrap">
+  <div><h2 style="font-size:26px;font-weight:300;color:#C7BE93">Guía de uso de la identidad visual</h2><p style="margin-top:12px"><b>Caja de herramientas.</b> Un toolkit de acceso restringido con todos los masters de marca en sus distintos formatos, listos para usar, y las fuentes tipográficas.</p></div>
+  <div><p>Para acceder al toolkit, o para validar cualquier uso de la marca en una acción de comunicación, escribile a Frank Sozzani: <a href="mailto:franksozzani@fksc.com.ar">franksozzani@fksc.com.ar</a></p><p style="font-size:13px;opacity:.75">FKSC | Comunicación Estratégica · Edición web, noviembre 2026</p></div>
+ </div>
+</footer>
+
+<script>
+{
+const C=[["Nadie dirige en soledad","Sumamos criterio a la mesa de quien decide. Acompañar no es un servicio más: es la razón por la que existimos."],["La cabecera es de quien dirige","Venimos a sentarnos a la mesa, no a ocupar el lugar de nadie. Respetamos el mando de quien conduce la organización."],["Lo decidido tiene que ocurrir","Una decisión que no se ejecuta es apenas una intención. Nos medimos por lo que pasa, no por lo que se acordó."],["El talento es el insumo: el acompañamiento es el producto","No alcanza con acercar a los mejores. Lo que vale es sostener el proceso hasta que se convierta en resultado."],["Lo que no se sigue, no se sostiene","Cada compromiso tiene responsable, fecha y seguimiento. Hacemos visible el avance para que nadie tenga que suponerlo."],["La experiencia se pone a prueba","Convocamos a quienes buscan un nuevo desafío, no un reconocimiento. Cada instancia de resolución es un impulso para su carrera."],["Flexibles en la forma, exigentes en el fondo","Armamos el board que el negocio necesita hoy, con la dedicación justa y el perfil exacto. Lo que se adapta es el formato, nunca el estándar."],["Decimos lo que vemos","La franqueza es nuestra forma de lealtad. Un board que solo asiente no acompaña: decora."]];
+document.getElementById('cultura').innerHTML=C.map((c,i)=>`<div class="card"><div class="num">${i+1}</div><h4>${c[0]}</h4><p class="mute" style="margin:0">${c[1]}</p></div>`).join('');
+
+const SG=[["PyME de 20 a 500 empleados","Necesita dejar de enterarse tarde, sin sentir que pierde el control.","Entramos por el acceso a dirección senior antes impensada, compartiendo datos de a poco."],["Empresa familiar","Necesita continuidad del legado y reglas claras entre quienes comparten apellido.","Entramos por la sucesión y el orden, con capacidad técnica que dé resultados."],["Scaleup post Serie A/B","Necesita credibilidad ante inversores y velocidad para no perder la ventana.","Entramos por gobierno y reporting, con talento que ejecuta, no que solo aconseja."],["Empresa grande / corporación","Tiene directorio, pero no siempre con las capacidades que sus desafíos actuales exigen, y necesita responder con agilidad sin sumar estructura fija.","Entramos por directores independientes y expertos por vertical, on demand, que suman el criterio que falta."]];
+document.getElementById('segs').innerHTML=SG.map(s=>`<div class="card top"><h4>${s[0]}</h4><p>${s[1]}</p><p class="mute" style="margin:0">${s[2]}</p></div>`).join('');
+
+const M1=[["Poder","Quiere influir, lograr, escalar, dominar su mercado. Le sumamos capacidad de ejecución con talento senior: no lo acompañamos a administrar lo que tiene, lo volvemos capaz de más.","Multiplicá tu capacidad de dirigir y de crecer."],["Status","Quiere prestigio y que lo tomen en serio sus pares y quienes invierten. Un board respetado es señal de madurez y ventaja en una due diligence.","Un gobierno que le da confianza a quien tiene que decidir si invierte."],["Orden","Quiere estructura, disciplina y previsibilidad. Profesionalizamos el gobierno y, sobre todo, le damos estructura visible: el tablero convierte cada decisión en un hito con responsable y fecha.","De la improvisación al control: cada decisión, un hito medible."],["Tranquilidad","Quiere bajar la ansiedad de decidir solo y el miedo a equivocarse. La mirada externa y la visibilidad en tiempo casi real reducen el riesgo percibido.","Dejá de decidir a ciegas y en soledad."]];
+document.getElementById('mot1').innerHTML=M1.map(m=>`<div class="card top"><h4>${m[0]}</h4><p class="mute">${m[1]}</p><p class="hook"><b>Gancho</b>«${m[2]}»</p></div>`).join('');
+const M2=[["Curiosidad","El deseo de entender. Hay fundadores que valoran la transferencia de criterio tanto como el resultado. A ellos les vendemos acceso a criterio y aprendizaje, no manos disponibles."],["Honor y familia","Decisivos en la empresa familiar: preservar el legado, ordenar la sucesión, hacer las cosas como corresponde. Ahí el gobierno se vende como cuidado del patrimonio y de la continuidad."],["Aceptación","En quien dirige con menos confianza en su propio criterio, el consejero funciona como caja de resonancia y calma el miedo a la crítica."],["Ahorro","El modelo fraccionado le habla directo a quien cuida cada peso. Pero es argumento racional de cierre, nunca el motor emocional que abre."]];
+document.getElementById('mot2').innerHTML=M2.map(m=>`<div class="card topo"><h4>${m[0]}</h4><p class="mute" style="margin:0">${m[1]}</p></div>`).join('');
+
+const PF=[["El founder en soledad","Tranquilidad, aceptación y orden","Carga la angustia de decidir sin nadie a su nivel.","Alivio, acompañamiento y visibilidad."],["El dueño de empresa familiar","Orden, honor, familia y tranquilidad","Quiere profesionalizar sin perder el alma del negocio.","Legado, continuidad y disciplina."],["El scaleup ambicioso","Poder, status, competencia y curiosidad","Quiere ganar y levantar capital.","Ambición y credibilidad ante quien invierte."],["El corporativo","Orden, status y tranquilidad","Tiene directorio, pero no siempre con las capacidades que el momento exige, y rinde cuentas a accionistas y reguladores.","Criterio independiente, capacidades sin estructura fija y una elección defendible."]];
+document.querySelector('#perf tbody').innerHTML=PF.map(p=>`<tr><td data-l="Perfil"><b>${p[0]}</b></td><td data-l="Qué lo mueve">${p[1]}</td><td data-l="Qué le pasa">${p[2]}</td><td data-l="De qué le hablamos">${p[3]}</td></tr>`).join('');
+
+const R=[["Dirección senior a la medida del momento","Sumamos a la mesa ejecutivos y directores de primer nivel, con un modelo flexible que abre el acceso a talentos que, en los acuerdos habituales del mercado, quedan fuera del alcance de la mayoría de las empresas."],["Talento que ejecuta","Cada persona que se sienta a la mesa tiene capacidad técnica probada para llevar los objetivos adelante. La selección responde al desafío concreto de cada empresa."],["Seguimiento a ritmo constante","Cada decisión tiene responsable, fecha y una instancia de revisión que se repite sin interrupciones."],["Evidencia a tiempo para corregir","Nuestro tablero muestra lo que está pasando mientras todavía podemos actuar. Quien dirige recupera visibilidad sobre su negocio y decide con datos del presente."],["Nos hacemos cargo del cumplimiento","Respondemos por que lo decidido ocurra. Lo asumimos sobre lo que controlamos —método, talento y seguimiento— y construimos el resultado junto con toda la organización."]];
+document.querySelector('#prom tbody').innerHTML=R.map((r,i)=>`<tr><td data-l="Compromiso"><b>${i+1} · ${r[0]}</b></td><td data-l="Cómo se verifica">${r[1]}</td></tr>`).join('');
+
+const P=[["Grises","#6D6E72","Gris base","58.50.46.14",[["#BCBDC1","26.20.18.0"],["#8B8C90","48.40.37.3"],["#6D6E72","58.50.46.14"],["#4C4D4F","66.58.55.36"],["#3A3A3C","69.63.59.51"]]],["Azules","#213250","Azul noche","93.80.42.38",[["#8086A8","54.45.18.0"],["#596B93","72.57.23.4"],["#3D547D","84.69.29.11"],["#304467","89.75.36.23"],["#213250","93.80.42.38"]]],["Dorados","#C7BE93","Dorado","23.20.47.0",[["#ECE5BB","7.6.31.0"],["#DBD19E","15.13.43.0"],["#C7BE93","23.20.47.0"],["#ACA47F","34.29.55.2"],["#8F8A6A","44.37.63.8"]]],["Neutros","#C2C3C1","Neutro","24.20.20.0",[["#F2F1EF","4.3.4.0"],["#D9D9D7","14.10.12.0"],["#C2C3C1","24.20.20.0"],["#ACAEAB","34.26.29.0"],["#989B97","44.34.38.0"]]]];
+const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const lum=h=>{const [r,g,b]=rgb(h);return (r*299+g*587+b*114)/1000};
+document.getElementById('pal').innerHTML=P.map(f=>`<div class="fam"><div class="tones">${f[4].map(([h,c])=>`<div class="${h===f[1]?'base':''}" style="background:${h};color:${lum(h)>150?'#213250':'#fff'}"><span>${h===f[1]?f[2]+'<br>':''}<small>CMYK ${c}</small></span><span>${h}</span></div>`).join('')}</div><div class="d"><b>${f[0].toUpperCase()}</b>Base: ${f[2]}<br>HEX ${f[1]}<br>RGB ${rgb(f[1]).join('.')}<br>CMYK ${f[3]}<br><button type="button" data-h="${f[1]}">Copiar HEX</button></div></div>`).join('');
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-h]');if(!b)return;const t=b.textContent;navigator.clipboard?.writeText(b.dataset.h).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent=t,1200)}).catch(()=>{b.textContent=b.dataset.h})});
+
+const links=[...document.querySelectorAll('#nav a')];
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id));const a=links.find(a=>a.classList.contains('on'));if(a){const n=document.getElementById('nav');n.scrollLeft=a.offsetLeft-n.offsetLeft-20}}})},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('main section[id]').forEach(s=>io.observe(s));
+}
+</script>
+</body>
+</html>

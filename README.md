@@ -2,6 +2,7 @@
 
 Brandbooks de clientes de FKSC | Comunicación Estratégica, publicados como landings.
 
+- `baas/` · Brandbook de BaaS | Board as a Service
 - `imotion-connect/` · Brandbook de imotion connect (CYLGEM)
 
 Cada brandbook vive en su propia carpeta, con su `index.html` y su carpeta `assets/`.
