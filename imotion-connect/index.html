@@ -45,6 +45,16 @@ header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 .card .num.pcq{font-size:clamp(28px,3vw,36px);font-weight:800;line-height:1.1;margin-bottom:12px}
 .cols.resgrid{grid-template-columns:minmax(0,2.4fr) minmax(0,1fr);align-items:center}.resbox{border-radius:14px;overflow:hidden;border:1px solid var(--line)}.resg{width:100%;height:auto;display:block}.restext p{font-size:19px;line-height:1.45}.rescel{color:#5f9fd4;font-weight:700}@media(max-width:960px){.cols.resgrid{grid-template-columns:1fr}}
 .minbox{display:flex;align-items:stretch;gap:18px;background:#fff;border-radius:14px;padding:30px 28px;border:1px solid var(--line)}.minbox img{width:calc(100% - 70px);height:auto;display:block}.mincota{flex:none;width:44px;position:relative;border-left:2px solid #3A3A3C}.mincota::before,.mincota::after{content:"";position:absolute;left:-9px;width:16px;border-top:2px solid #3A3A3C}.mincota::before{top:0}.mincota::after{bottom:0}.mincota span{position:absolute;left:10px;top:50%;transform:translateY(-50%) rotate(180deg);font-weight:700;font-size:15px;white-space:nowrap;color:#3A3A3C;writing-mode:vertical-rl;left:8px}.minreal{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:var(--mute)}.minreal img{background:#fff;padding:6px;border-radius:6px}
+.avs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:26px}.avs figure{background:#fff;border-radius:16px;padding:28px;text-align:center;border:1px solid var(--line);color:#3A3A3C}.avring{width:min(240px,70%);aspect-ratio:1;margin:0 auto;border-radius:50%;border:1.5px solid #cfcfcf;padding:4px}.avring img{width:100%;height:100%;display:block;border-radius:50%}.avs figcaption{margin-top:14px;font-size:15px}.avsm{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:16px}.avsm img{border-radius:50%;border:1px solid #d6d6d6}
+.posts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:16px;align-items:start}.posts figcaption{margin-top:10px;font-size:14px;color:var(--mute)}.posts figcaption b{color:var(--ink)}
+.li,.ig{background:#fff;color:#1d1d1f;border:1px solid #dcdfe3;border-radius:12px;overflow:hidden;font-size:14px;max-width:520px;margin:0 auto;box-shadow:0 12px 30px -20px rgba(30,50,80,.35)}
+.ph{display:flex;gap:10px;align-items:center;padding:12px 14px}.ph b{display:block;font-size:14px}.ph span{display:block;font-size:12px;color:#6b6f75;line-height:1.35}.pav{width:48px;height:48px;border-radius:50%;border:1px solid #e3e3e3;display:block}
+.ptx{padding:0 14px 10px}.ptx p{margin:0 0 8px;line-height:1.45}
+.pimg{background:linear-gradient(90deg,#4B7CB6,#91C7ED);aspect-ratio:1.91/1;display:flex;align-items:center;gap:6%;padding:0 8%;color:#fff}.pimg img{width:30%;height:auto}.pimg p{margin:0;font-size:clamp(16px,2vw,24px);font-weight:300;line-height:1.25}
+.pbar{display:flex;justify-content:space-around;padding:10px 6px;border-top:1px solid #eceef0;color:#555;font-weight:600;font-size:13px}
+.ig .ring{flex:none;padding:2px;border-radius:50%;background:linear-gradient(45deg,#4B7CB6,#91C7ED)}.ig .ring .pav{width:36px;height:36px;border:2px solid #fff}
+.ig .sq{width:100%;aspect-ratio:1;object-fit:cover;display:block}.icons{display:flex;gap:16px;padding:10px 14px 4px}.icons svg{width:24px;height:24px;fill:none;stroke:#1d1d1f;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.cap{padding:4px 14px 14px}.cap p{margin:0;line-height:1.45}
+@media(max-width:760px){.avs,.posts{grid-template-columns:1fr}}
 nav.chap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
 nav.chap::-webkit-scrollbar{display:none}
 nav.chap a{flex:none;text-decoration:none;color:var(--mute);font-size:14px;padding:8px 10px;border-radius:8px;white-space:nowrap}
@@ -647,6 +657,43 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:
   </div>
  </div>
 </section>
+
+<section class="band alt" id="redes">
+ <div class="wrap">
+  <div class="chead"><div><h2>Aplicación del símbolo en los perfiles de Redes Sociales</h2></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>En redes, el perfil es un círculo. Ahí el símbolo habla solo.</p></div>
+   <div><p>En la foto de perfil usamos el símbolo sin el logotipo, centrado y contenido dentro del perímetro circular que define cada red. El nombre <b>imotion connect</b> ya aparece junto al perfil, así que no hace falta repetirlo.</p><p>La versión principal es el símbolo a color sobre blanco. La alternativa, el símbolo de línea en el degradé de azules, también sobre blanco.</p></div>
+  </div>
+  <div class="avs">
+   <figure><div class="avring"><img src="assets/avatar-color.png" alt="Perfil con el símbolo a color"></div><figcaption><b>Principal</b> · Símbolo a color</figcaption><div class="avsm"><img src="assets/avatar-color.png" alt="" width="80" height="80"><img src="assets/avatar-color.png" alt="" width="48" height="48"><img src="assets/avatar-color.png" alt="" width="32" height="32"></div></figure>
+   <figure><div class="avring"><img src="assets/avatar-linea.png" alt="Perfil con el símbolo de línea"></div><figcaption><b>Alternativa</b> · Símbolo de línea en degradé</figcaption><div class="avsm"><img src="assets/avatar-linea.png" alt="" width="80" height="80"><img src="assets/avatar-linea.png" alt="" width="48" height="48"><img src="assets/avatar-linea.png" alt="" width="32" height="32"></div></figure>
+  </div>
+  <h3 class="k" style="margin-top:44px">Así se ve en un posteo</h3>
+  <div class="posts">
+   <figure>
+    <div class="li">
+     <div class="ph"><img src="assets/avatar-color.png" alt="" class="pav"><div><b>imotion connect</b><span>Domótica integral · by CYLGEM</span><span>2 h</span></div></div>
+     <div class="ptx"><p>Tu casa no necesita más dispositivos. Necesita que funcionen juntos.</p><p>En <b>imotion connect</b> escuchamos antes de instalar, integramos con criterio y respondemos por todo el sistema. Con el respaldo de CYLGEM y cuarenta años de electrónica argentina.</p></div>
+     <div class="pimg"><img src="assets/imc-simbolo-linea.png" alt=""><p>Tecnología que se adapta<br>a tu manera de vivir.</p></div>
+     <div class="pbar"><span>Recomendar</span><span>Comentar</span><span>Compartir</span><span>Enviar</span></div>
+    </div>
+    <figcaption><b>LinkedIn</b> · Perfil con el símbolo a color</figcaption>
+   </figure>
+   <figure>
+    <div class="ig">
+     <div class="ph"><span class="ring"><img src="assets/avatar-linea.png" alt="" class="pav"></span><div><b>imotion.connect</b><span>Buenos Aires, Argentina</span></div></div>
+     <img src="assets/post-instagram.jpg" alt="Vasos térmicos con la marca imotion connect" class="sq">
+     <div class="icons"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.3 3.2 5 6.6 5c2 0 3.4 1.1 4.4 2.5C12 6.1 13.4 5 15.4 5 18.8 5 21 8.3 19.5 11.8 17.5 16.4 12 21 12 21z"/></svg><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 1 1-3.3-6.5A8 8 0 0 1 20 11.5zM20 20l-2.2-4.4"/></svg><svg viewBox="0 0 24 24"><path d="M21 3 3 10.5l7 2.5 2.5 7L21 3zM10 13l5-5"/></svg></div>
+     <div class="cap"><p><b>imotion.connect</b> Lo que queda encendido cuando salís también es una decisión. Con <b>imotion connect</b>, la escena «Salir de casa» apaga, cierra y verifica por vos.</p></div>
+    </div>
+    <figcaption><b>Instagram</b> · Perfil con el símbolo de línea</figcaption>
+   </figure>
+  </div>
+  <p style="font-size:14px;color:var(--mute);margin-top:12px">Simulaciones ilustrativas de aplicación. Los textos de los posteos son de ejemplo.</p>
+ </div>
+</section>
+
 
 
 </main>
