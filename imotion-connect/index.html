@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>imotion connect | Brandbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: marca de servicio que habla claro; sereno, cercano, con evidencia al lado de cada promesa.
+IDEA: el isotipo como mapa: ocho colores, ocho macroverticales; el triángulo azul central es la macrovertical 8.
+PICTURE: el isologotipo grande sobre una lámina blanca, con el degradé azul de marca como banda de capítulo.
+COLOUR and TYPE: blanco, gris grafito #3A3A3C, degradé azul #4B7CB6→#91C7ED, acentos del espectro del isotipo; Open Sans.
+LAYOUT: barra fija con capítulos; cada capítulo en tres columnas (tesis, desarrollo, consecuencias) como el brandbook impreso.
+*/
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#16191d);--soft:light-dark(#f3f6f9,#1e2328);--line:light-dark(#dfe5eb,#2f363d);
+--ink:light-dark(#3A3A3C,#e9edf1);--mute:light-dark(#6b6f75,#a7b0b9);
+--azul:#4B7CB6;--celeste:#91C7ED;--amarillo:#FFC91F;--rojo:#E32F21;--naranja:#F3921D;--verde:#98C358;--cian:#25AAE2;--magenta:#AE1162;
+--azulT:light-dark(#3d6aa0,#91C7ED);--pend:light-dark(#fff4cc,#3a3218);--pendInk:light-dark(#6a5200,#ffd95a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Open Sans",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3,h4{margin:0;line-height:1.12;text-wrap:balance}
+p{margin:0 0 .9em}
+a{color:var(--azulT)}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(36px,5vw,80px) max(5vw,16px)}
+.band.alt{background:var(--soft)}
+.scroll{overflow-x:auto}
+
+/* barra */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;gap:16px;padding:10px max(5vw,16px);max-width:1340px;margin:0 auto}
+.topin .mark{flex:none;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px}
+.topin .mark span{width:34px;height:34px;border-radius:8px;background:#fff url(assets/imc-isotipo.jpg) center/88% no-repeat;border:1px solid var(--line)}
+.fksc{flex:none;display:block;width:44px;height:44px;margin-left:4px}.fksc img{width:100%;height:100%;object-fit:contain;display:block}
+.mleft{display:flex;flex-direction:column;height:100%}.msym{width:clamp(120px,14vw,190px);height:auto;margin-top:auto;padding-top:32px;display:block}@media(max-width:960px){.msym{width:110px;margin-top:20px;padding-top:0}}
+.mocks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:26px}.mock .stage{border-radius:16px;overflow:hidden;aspect-ratio:4/3}.mock.wide{grid-column:1/-1}.mock.wide .stage{aspect-ratio:8/3}.mock svg{width:100%;height:100%;display:block}.mock figcaption{font-size:14px;color:var(--mute);margin-top:10px}.mock figcaption b{color:var(--ink)}@media(max-width:900px){.mocks{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.mocks{grid-template-columns:1fr}.mock.wide{grid-column:auto}.mock.wide .stage{aspect-ratio:8/3}}
+.mosaic{margin:26px 0 0}.mosaic img{width:100%;height:auto;display:block;border-radius:16px}
+nav.chap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+nav.chap::-webkit-scrollbar{display:none}
+nav.chap a{flex:none;text-decoration:none;color:var(--mute);font-size:14px;padding:8px 10px;border-radius:8px;white-space:nowrap}
+nav.chap a:hover,nav.chap a.on{color:var(--ink);background:var(--soft)}
+nav.chap a b{color:var(--azulT);margin-right:4px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,64px);align-items:center}
+.hero h1{font-size:clamp(40px,6vw,64px);font-weight:800;letter-spacing:-.02em}
+.hero .lead{font-size:18px;max-width:34em;margin-top:18px}
+.hero .say{margin-top:22px;font-size:15px;color:var(--mute)}
+.say b{color:var(--ink)}
+.plate{background:#fff;border-radius:18px;display:grid;place-items:center;padding:clamp(20px,4vw,48px);box-shadow:0 1px 0 var(--line),0 20px 50px -30px rgba(40,70,110,.45)}
+.plate img{width:100%;height:auto;display:block}
+.plate.dark{background:#000}
+.grad{background:linear-gradient(90deg,#4B7CB6,#91C7ED);color:#fff}
+.heroplate{aspect-ratio:16/10}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--mute)}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+
+/* capítulos */
+.chead{display:flex;align-items:baseline;gap:18px;padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:28px}
+.chead .n{font-size:clamp(40px,5vw,56px);font-weight:300;color:var(--azulT);line-height:1}
+.chead h2{font-size:clamp(28px,3.4vw,40px);font-weight:300}
+.chead small{display:block;font-size:15px;color:var(--mute);font-style:italic;margin-top:6px;font-weight:400}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) minmax(0,1.25fr);gap:clamp(20px,3vw,44px)}
+.cols.two{grid-template-columns:minmax(0,1fr) minmax(0,2.5fr)}
+.thesis{font-weight:700;color:var(--azulT);font-size:18px;line-height:1.45}
+.thesis p{margin-bottom:.8em}
+h3{font-size:clamp(20px,2vw,24px);font-weight:700;line-height:1.2;color:var(--ink);margin:0 0 12px;text-transform:none}
+h3.k{font-size:clamp(22px,2.4vw,28px);color:var(--azulT)}
+.blk{margin-bottom:26px}
+.quote{font-size:clamp(22px,2.6vw,30px);font-weight:300;line-height:1.3;border-left:4px solid var(--azul);padding-left:20px;margin:6px 0 24px}
+.pull{font-weight:700;font-size:19px;line-height:1.4}
+ul.gt{list-style:none;padding:0;margin:0}
+ul.gt li{padding-left:20px;position:relative;margin-bottom:10px}
+ul.gt li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:2px 50% 50% 50%;background:var(--azul);transform:rotate(-45deg)}
+@media(max-width:960px){.cols,.cols.two{grid-template-columns:1fr}}
+
+/* pendientes */
+.pv{display:inline-block;font-size:12px;font-weight:700;background:var(--pend);color:var(--pendInk);border-radius:6px;padding:1px 8px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.pbox{background:var(--pend);color:var(--pendInk);border-radius:12px;padding:14px 16px;font-size:14px;margin:14px 0}
+.pbox b{display:block;margin-bottom:4px}
+
+/* tarjetas */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.alt .card{background:var(--bg)}
+.card h4{font-size:17px;margin-bottom:8px}
+.card .num{font-size:18px;color:var(--azulT);font-weight:700;margin-bottom:6px}
+.ppp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ppp .card{border-top:6px solid var(--azul)}
+.ppp .card h4{font-size:24px;font-weight:300}
+@media(max-width:860px){.ppp{grid-template-columns:1fr}}
+.cmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-radius:14px;overflow:hidden;margin:8px 0 26px}
+.cmp div{padding:22px;font-size:clamp(18px,2vw,22px);line-height:1.3}
+.cmp div span{display:block;font-size:13px;margin-bottom:6px;opacity:.85}
+.cmp div:nth-child(1){background:var(--soft)}
+.cmp div:nth-child(2){background:#91C7ED;color:#1f3550}
+.cmp div:nth-child(3){background:#4B7CB6;color:#fff;font-weight:700}
+@media(max-width:700px){.cmp{grid-template-columns:1fr}}
+
+/* tablas */
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;font-size:clamp(17px,1.8vw,24px);line-height:1.25;color:var(--ink);font-weight:600;border-bottom:2px solid var(--ink);padding:8px 10px}
+td{border-bottom:1px solid var(--line);padding:12px 10px;vertical-align:top}
+td b{font-weight:700}
+.prio{font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap;display:inline-block}
+.p-ahora{background:#4B7CB6;color:#fff}.p-prox{background:#91C7ED;color:#1f3550}.p-mas{background:var(--soft);color:var(--mute)}.p-fuera{border:1px solid var(--line);color:var(--mute)}
+@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mute);font-size:12px}.stack td:empty{display:none}}
+
+/* mapa de verticales */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
+.legend button,.filt button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;min-height:36px;display:flex;align-items:center;gap:8px}
+.legend button i{width:12px;height:12px;border-radius:3px 50% 50% 50%;transform:rotate(-45deg)}
+.legend button[aria-pressed=true],.filt button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.filt{display:flex;flex-wrap:wrap;gap:8px}
+.vmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:12px}
+.v{border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start;transition:opacity .2s;background:var(--bg)}
+.v.off{opacity:.18}
+.v .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff}
+.v .ic svg{width:26px;height:26px}
+.v h4{font-size:15px;margin:0 0 4px}
+.v p{font-size:12.5px;color:var(--mute);margin:0 0 6px;line-height:1.45}
+.v .st{font-size:11.5px;font-weight:700}
+.v.etapa1{border-color:var(--azul);box-shadow:inset 0 0 0 1px var(--azul)}
+.v.etapa2 .ic,.v.transv .ic{filter:saturate(.35);opacity:.7}
+.segs{grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr))}.segs .ic{font-weight:800;font-size:16px}.segs .prio{white-space:normal;line-height:1.35;padding:3px 8px}.sg-ahora{border-color:var(--azul);box-shadow:inset 0 0 0 1px var(--azul)}.sg-ahora .ic{background:#4B7CB6}.sg-prox{border-color:#91C7ED;box-shadow:inset 0 0 0 1px #91C7ED}.sg-prox .ic{background:#91C7ED;color:#1f3550}.sg-mas .ic,.sg-fuera .ic{background:var(--soft);color:var(--mute)}
+.count{font-size:14px;color:var(--mute);margin:12px 0 0}
+
+/* escenas */
+.esc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px}
+.esc .card{border-left:5px solid var(--amarillo)}
+.esc .card h4{font-size:19px;font-weight:600}
+.esc .biz{border-left-color:#4B7CB6}
+@media(min-width:900px){#esc2{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.eg{font-size:20px;font-weight:600;margin:26px 0 12px;color:var(--ink)}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;margin:0 4px 4px 0}
+.t-ahorro{background:#98C358;color:#1f3a0c}.t-seguridad{background:#E32F21;color:#fff}.t-confort{background:#F3921D;color:#3A3A3C}.t-experiencia{background:#AE1162;color:#fff}
+
+/* identidad */
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}@media(max-width:700px){.specs{grid-template-columns:1fr}}
+.icg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,120px),1fr));gap:12px;margin-top:22px}.icg div{text-align:center;font-size:12px;color:var(--mute);line-height:1.3}.icg span{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;margin:0 auto 8px;color:#fff}.icg span svg{width:34px;height:34px}.icg .dim span{opacity:.45}
+.spec figcaption{font-size:14px;color:var(--mute);margin-top:10px}
+.spec figcaption b{color:var(--ink)}
+figure{margin:0}
+.rule{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;font-weight:700;margin-top:16px}
+.rule span{border:1px solid var(--rojo);color:var(--rojo);border-radius:6px;padding:4px 10px}
+.wr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wr>div{border-radius:12px;padding:16px 18px}
+.ok{background:color-mix(in srgb,#98C358 22%,var(--bg))}
+.no{background:color-mix(in srgb,#E32F21 14%,var(--bg))}
+.wr h4{font-size:13px;margin-bottom:8px}
+.wr p{font-size:18px;margin:0 0 6px}
+.no p{text-decoration:line-through;text-decoration-color:var(--rojo)}
+@media(max-width:700px){.wr{grid-template-columns:1fr}}
+.say-big{font-size:clamp(26px,3.4vw,40px);font-weight:300;margin:6px 0}
+.say-big b{font-weight:700}
+
+.pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr));gap:14px}
+.sw{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
+.sw .c{height:96px}
+.sw .d{padding:10px 12px;font-size:12.5px;line-height:1.5}
+.sw .d b{font-size:14px;display:block}
+.sw button{font:inherit;font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:6px;padding:4px 8px;margin-top:6px;cursor:pointer;min-height:32px}
+.gradbar{height:72px;border-radius:14px;background:linear-gradient(90deg,#4B7CB6,#91C7ED);margin:18px 0 6px}
+
+.type{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end}
+.type .aa{font-size:clamp(90px,14vw,170px);font-weight:300;line-height:.9;color:var(--azulT)}
+.type .w{font-size:15px}
+.type .w div{border-bottom:1px solid var(--line);padding:8px 0;display:flex;justify-content:space-between;gap:12px}
+@media(max-width:700px){.type{grid-template-columns:1fr}}
+
+.reserve{position:relative;background:#fff;border-radius:14px;padding:44px;background-image:linear-gradient(#e9eef4 1px,transparent 1px),linear-gradient(90deg,#e9eef4 1px,transparent 1px);background-size:22px 22px}
+.reserve .box{position:relative;outline:2px dashed #FFC91F;outline-offset:36px}
+.reserve img{width:100%;display:block}
+.sizes{display:grid;gap:14px}
+.sizes div{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--line);padding-bottom:12px;font-size:14px}
+.sizes img{background:#fff;border-radius:4px;padding:4px}
+
+.endorse{display:flex;align-items:center;gap:22px;background:#fff;border-radius:14px;padding:28px;flex-wrap:wrap;color:#3A3A3C}
+.endorse img{height:74px;width:auto}
+.endorse .by{display:flex;align-items:center;gap:12px;font-size:16px;border-left:1px solid #cfd6dd;padding-left:22px}
+.endorse .by img{height:48px;width:auto}
+.seal{display:inline-flex;align-items:center;gap:12px;border:2px solid #4B7CB6;border-radius:999px;padding:10px 20px 10px 20px;background:#fff;color:#3A3A3C;font-size:13px;line-height:1.3}
+.seal span.cl{width:54px;height:48px;background:none;border-radius:0;display:block}.seal span.cl svg{width:100%;height:100%;display:block}
+.seal span{width:40px;height:40px;border-radius:50%;background:#4B7CB6;color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px}
+
+footer{background:#3A3A3C;color:#e9edf1}
+footer a{color:#91C7ED}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+@media(max-width:760px){footer .wrap{grid-template-columns:1fr}}
+.check{list-style:none;padding:0;margin:0}
+.check li{padding:10px 0 10px 30px;border-bottom:1px solid var(--line);position:relative}
+.check li::before{content:"";position:absolute;left:0;top:13px;width:16px;height:16px;border:2px solid var(--azul);border-radius:4px}
+:focus-visible{outline:3px solid #FFC91F;outline-offset:2px}
+
+.tl{list-style:none;padding:0;margin:22px 0 34px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 18px}
+.tl li{position:relative;padding:26px 0 24px;border-top:2px solid var(--line)}
+.tl li::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid #4B7CB6}
+.tl .y{font-size:clamp(26px,2.6vw,34px);font-weight:300;color:var(--azulT);line-height:1;margin-bottom:8px}
+.tl p{font-size:15px;margin:0}
+.tl li.imc{border-top-color:#4B7CB6}
+.tl li.imc::before{background:#FFC91F;border-color:#FFC91F}
+.tl li.imc .y{font-weight:800}
+.tl li.imc p{font-weight:600}
+@media(max-width:900px){.tl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.tl{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top">
+ <div class="topin">
+  <a class="mark" href="#inicio"><span></span>Brandbook</a>
+  <nav class="chap" id="nav" aria-label="Capítulos">
+   <a href="#manifiesto">Manifiesto</a>
+   <a href="#proposito"><b>1</b>Propósito</a>
+   <a href="#posicionamiento"><b>2</b>Posicionamiento</a>
+   <a href="#publicos"><b>3</b>A quién le hablamos</a>
+   <a href="#promesa"><b>4</b>Promesa</a>
+   <a href="#oferta"><b>5</b>Oferta</a>
+   <a href="#voz"><b>6</b>Voz y tono</a>
+   <a href="#historia"><b>7</b>Historia</a>
+   <a href="#identidad"><b>8</b>Identidad visual</a>
+  </nav>
+  <a class="fksc" href="https://fksc.com.ar" title="FKSC | Comunicación Estratégica"><img src="assets/fksc-brujula.png" alt="FKSC | Comunicación Estratégica"></a>
+ </div>
+</header>
+
+<main>
+<section class="band" id="inicio">
+ <div class="wrap hero">
+  <div>
+   <h1>Brandbook</h1>
+   <p class="lead">El objetivo de este manual es que todo lo que <b>imotion connect</b> diga, muestre y haga sea coherente con lo que promete, en cualquier medio y en cualquier contexto.</p>
+   <p class="lead" style="margin-top:8px">Es la referencia común para el equipo, los Partners Estratégicos y cualquier agencia que represente la marca. Y no es un manual de logo: es el manual de cómo una marca de servicio se ve, se escucha y se comporta.</p>
+   <div class="chips"><span class="chip">Versión de prueba · noviembre 2026</span></div>
+  </div>
+  <div class="plate heroplate"><img src="assets/imc-horizontal.jpg" alt="Isologotipo imotion connect en versión horizontal, a color"></div>
+ </div>
+</section>
+
+<section class="band grad" id="manifiesto">
+ <div class="wrap cols two">
+  <div class="mleft"><h2 style="font-size:clamp(28px,3.4vw,40px);font-weight:300">Manifiesto</h2><p style="margin-top:6px;font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.2">imotion connect</p><img class="msym" src="assets/imc-simbolo-linea.png" alt=""></div>
+  <div style="font-size:17px;max-width:44em">
+   <p>Sabemos lo que pasa en muchas casas conectadas. Una app o un control remoto para las luces, otro para el aire, otro para el portón. Un dispositivo que se compró por precio y que nadie configura cuando falla. Y un lunes a las 7, la escena de la mañana que deja de funcionar sin que nadie atienda del otro lado.</p>
+   <p>Creemos que eso no debería pasar. Creemos que la tecnología tiene que adaptarse a la manera de vivir de cada persona, y no al revés.</p>
+   <p>Por eso primero escuchamos. A qué hora se levanta, quién llega primero, qué parámetros de confort y funcionalidad espera, qué queda encendido cuando se va. De esa conversación salen las escenas, y de las escenas salen los dispositivos.</p>
+   <p>Por eso integramos con criterio. Lo que proponemos desde la integralidad de la domótica, la instalación certificada, nuestros estándares de calidad, lo que suman nuestros Partners Estratégicos y lo que producimos funciona como un solo sistema: una sola app, un solo responsable, una sola garantía.</p>
+   <p>Y por eso respondemos. Detrás de nuestra marca hay una empresa argentina con cuarenta años de electrónica para industrias donde un dispositivo que falla no es una molestia: es un retiro de producto. CYLGEM es nuestro aval en experiencia y tecnología internacional con fabricación nacional.</p>
+   <p>Mientras otras empresas muestran catálogo, nosotros creamos sistemas integrales y complementarios para controlar que todo funcione a la medida de cada cliente.</p>
+   <p class="pull" style="margin-top:20px">Tecnología que se adapta a tu manera de vivir.<br>Y alguien que responde por ella.</p>
+  </div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Cultura imotion connect</h2><small>Cómo trabajamos en cada espacio que conectamos</small></div></div>
+  <div class="grid3" id="cultura"></div>
+ </div>
+</section>
+
+<section class="band alt">
+ <div class="wrap cols">
+  <div><h2 style="font-size:clamp(26px,3vw,34px);font-weight:300">Un viaje en ascensor…</h2><p class="mute" style="margin-top:8px;color:var(--mute)">Lo que hacemos, contado en treinta segundos.</p></div>
+  <div><h3 class="k">Qué somos y para quién</h3><p class="quote" style="font-size:20px">«Somos la marca de domótica de CYLGEM. Ayudamos a quien vive, opera o proyecta un espacio a que la tecnología se adapte a su manera de vivir, de recibir o de trabajar».</p></div>
+  <div><h3 class="k">Qué hacemos y qué nos distingue</h3><p class="quote" style="font-size:20px">«Diagnosticamos antes de vender, integramos lo que el espacio necesita y respondemos por todo el sistema, con dos años de garantía y una fábrica argentina que valida cada dispositivo».</p></div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Por qué · Cómo · Qué</h2><small>El orden del círculo dorado: primero el porqué, al final el qué</small></div></div>
+  <div class="ppp">
+   <div class="card"><div class="num">Por qué</div><h4>Creemos que la tecnología tiene que adaptarse a la manera de vivir de cada persona, y no al revés.</h4><p style="margin-top:12px;color:var(--mute)">No habla de dispositivos, porque los dispositivos van a cambiar. La manera de vivir del otro, no.</p></div>
+   <div class="card"><div class="num">Cómo</div><h4>Escuchamos antes de instalar, integramos con criterio y respondemos por cada espacio que conectamos.</h4><p style="margin-top:12px;color:var(--mute)">Diagnóstico de necesidades, integración confiable y métricas observables, sobre la validación de CYLGEM.</p></div>
+   <div class="card"><div class="num">Qué</div><h4>Domótica para casas, comercios, hoteles y espacios de trabajo, por escenas y no por teclas.</h4><p style="margin-top:12px;color:var(--mute)">Once verticales en esta primera etapa: del confort y el entretenimiento a los accesos, la videovigilancia, la seguridad técnica, el bienestar y el control por voz.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 1 -->
+<section class="band alt" id="proposito">
+ <div class="wrap">
+  <div class="chead"><span class="n">1</span><div><h2>Propósito de la marca</h2><small>Conocete a vos mismo</small></div></div>
+  <div class="cols">
+   <div class="thesis"><p>En <b>imotion connect</b> creemos que la tecnología tiene que adaptarse a la manera de vivir de cada persona, y no al revés.</p><p>Por eso escuchamos antes de instalar, integramos con criterio y respondemos por cada espacio que conectamos.</p></div>
+   <div>
+    <div class="blk"><h3>Lo que lo sustenta</h3>
+    <ul class="gt"><li>El cliente no compra el control de dieciocho sistemas: compra una casa que se adapta a su manera de vivir.</li>
+    <li>La frase recoge las palabras de Marcelo Caricato: coherencia, honestidad y el placer de habitar antes que el status de tener.</li>
+    <li>Nuestra fortaleza no es tener todo: es poder responder por todo lo que conectamos. Y nuestra debilidad no es un error de gestión: es el precio de no haber resignado calidad.</li></ul></div>
+   </div>
+   <div>
+    <div class="blk"><h3>Lo que el propósito nos obliga</h3>
+    <p>Un propósito que no cambia decisiones es decoración. Este cambia tres:</p>
+    <ul class="gt"><li><b>Qué entra al catálogo.</b> Cada vertical nueva entra solo cuando podemos responder por ella con la misma garantía.</li>
+    <li><b>Cómo vendemos.</b> Primero el diagnóstico, después la propuesta. Nunca al revés.</li>
+    <li><b>Cómo hablamos.</b> De lo que pasa cuando tocás, no de la tecla. Comunicamos lo que generamos, no lo que hacemos.</li></ul></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 2 -->
+<section class="band" id="posicionamiento">
+ <div class="wrap">
+  <div class="chead"><span class="n">2</span><div><h2>Posicionamiento</h2><small>Dime con quién andas</small></div></div>
+  <div class="cols">
+   <div class="thesis"><p>Los otros venden dispositivos. Nosotros nos hacemos cargo de lo que pasa entre ellos.</p><p style="font-weight:400;color:var(--ink);font-size:16px">El catálogo se compra. El criterio no.</p></div>
+   <div>
+    <div class="blk"><h3>El lugar que queremos ocupar</h3>
+    <p>Para las personas que deciden sobre el espacio que habitan y están por cambiarlo —y para los arquitectos, interioristas, desarrolladores e instaladores que las acompañan—, <b>imotion connect</b> es la domótica que se hace cargo del sistema completo: diagnostica, integra y responde.</p>
+    <p>Porque detrás hay CYLGEM, una fábrica argentina que valida cada dispositivo con la exigencia de la industria automotriz.</p></div>
+   </div>
+   <div>
+    <div class="blk"><h3>El casillero vacío</h3>
+    <p>El benchmark de más de cuarenta empresas de Argentina, Chile y Uruguay nos mostró que los que venden proyecto no fabrican, y los que fabrican no venden proyecto.</p>
+    <p>No vamos a ganar ese casillero por cantidad de producto. Lo vamos a ganar por la calidad de la respuesta.</p></div>
+   </div>
+  </div>
+  <h3 style="margin-top:12px">La comparación que elegimos</h3>
+  <div class="cmp"><div><span>Por tecla</span>perdemos.</div><div><span>Por ambiente resuelto</span>competimos.</div><div><span>Por años sin problemas</span>ganamos.</div></div>
+  <p style="max-width:52em">Todo el sistema de marca empuja la conversación hacia la tercera frase. Una ventaja de catálogo se copia con una orden de compra. Una ventaja de servicio se construye con años de promesas cumplidas.</p>
+  <p style="max-width:52em">Es la forma en que cumplimos la misión que heredamos de CYLGEM: ofrecer siempre la mejor relación precio-calidad. Una relación que no se mide por tecla, sino por lo que el sistema resuelve y por cuánto tiempo funciona sin fallar.</p>
+ </div>
+</section>
+
+<!-- 3 -->
+<section class="band alt" id="publicos">
+ <div class="wrap">
+  <div class="chead"><span class="n">3</span><div><h2>A quién le hablamos</h2><small>Tres mercados, dos líneas de negocio</small></div></div>
+  <div class="cols">
+   <div class="thesis"><p>Una definición que incluye a todos no orienta a nadie. Ni a la pauta, ni al vendedor, ni al diseño del kit.</p></div>
+   <div><h3>Tres mercados</h3><p>Quien vive o administra un espacio, quien lo opera como negocio y quien lo proyecta, lo instala o lo recomienda.</p><p>De ahí salen dos líneas: una que vende directo al que habita u opera el espacio (B2C y B2B), y otra que construye alianzas para que otros nos recomienden, nos especifiquen o nos instalen (B2B2C).</p></div>
+   <div><h3>La frase-madre, traducida</h3><p>La frase habla de la casa. Cuando le hablamos a un hotel, a un restaurante o a un consultorio, la traducimos: un espacio que se adapta a su manera de recibir, de atender o de trabajar.</p><p class="pull" style="font-size:17px">La promesa es la misma; cambia el espacio.</p></div>
+  </div>
+
+  <h3 class="k" style="margin-top:20px">Los diez segmentos y dónde entramos primero</h3>
+  <div class="vmap segs" id="seg" style="margin-top:14px"></div>
+
+  <h3 class="k" style="margin-top:34px">Las personas detrás de cada puerta</h3>
+  <p style="max-width:52em">Cada segmento se traduce en una persona concreta, y cada persona compra algo distinto aunque le vendamos lo mismo. Tres puertas, tres carteles: el usuario final, la red de embajadores y la venta directa comparten marca, pero no comparten mensaje.</p>
+  <div class="scroll"><table class="stack" id="per"><thead><tr><th>A quién</th><th>Qué compra en realidad</th><th>Qué le decimos primero</th><th>Por dónde entra</th></tr></thead><tbody></tbody></table></div>
+
+  <div class="cols" style="margin-top:34px">
+   <div><h3 class="k">Los prescriptores</h3><p>No siempre el que recomienda, especifica o integra es el que paga. Los prescriptores nos permiten entrar en la etapa de proyecto, cuando la tecnología todavía se incorpora sin romper nada.</p><p>En esta etapa nos concentramos en cuatro: arquitectos y estudios, interioristas, constructoras y desarrolladores, e instaladores eléctricos.</p></div>
+   <div><h3 class="k">Partners Estratégicos</h3><p>Sumamos Partners en cada etapa de la operación: producción, aplicación de dispositivos, instalación y postventa. Capacitados, certificados y respaldados por nosotros, son además las voces de la marca en la calle.</p><p>El Management de <b>imotion connect</b> controla toda la operación y los estándares de calidad de cada etapa. Una regla: la capacidad de la red de Partners marca el ritmo de la campaña.</p></div>
+   <div><h3 class="k">A quién le decimos que no</h3><p>Al que busca la tecla más barata para instalarla solo. Al que quiere domótica para mostrar. Y, por ahora, a los proyectos de inmótica industrial.</p><p class="pull" style="font-size:17px">No es elitismo decir para quién no somos. Es coherencia decir para quién sí, y cumplirle.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 4 -->
+<section class="band" id="promesa">
+ <div class="wrap">
+  <div class="chead"><span class="n">4</span><div><h2>Promesa de valor</h2><small>Decir lo que se hace, hacer lo que se dice</small></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>Una promesa sin evidencia no es promesa: es deseo.</p><p style="font-weight:400;color:var(--ink);font-size:16px">Por eso cada línea lleva al lado lo que la demuestra. Ninguna pieza de comunicación puede correr la promesa más allá de su evidencia.</p></div>
+   <div class="scroll"><table class="stack" id="prom"><thead><tr><th>Prometemos</th><th>Lo demuestra</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <h3 class="k" style="margin-top:40px">Cómo se sostiene: tres pilares sobre una base</h3>
+  <div class="ppp" style="margin-top:12px">
+   <div class="card"><div class="num">Pilar 1</div><h4>Diagnóstico de necesidades</h4><p style="margin-top:10px">Escuchamos antes de vender. Hay dos carriles: a medida dentro de un menú (dos o tres ambientes, relevamiento remoto por fotos, video y plano) y a medida de verdad (obra, comercio o desarrollo, con visita y proyecto propio).</p><p><b>Entregable:</b> siempre un mapa de escenas, con su alcance escrito.</p></div>
+   <div class="card"><div class="num">Pilar 2</div><h4>Integración confiable</h4><p style="margin-top:10px">Dispositivos de distinto origen que funcionan como un solo sistema. Cuatro condiciones: validación CYLGEM antes de entrar al catálogo, compatibilidad verificada en cada proyecto, un estándar de instalación propio que cumplen todos nuestros Partners y una garantía que cubre el sistema, no la pieza suelta.</p></div>
+   <div class="card"><div class="num">Pilar 3</div><h4>Métricas observables</h4><p style="margin-top:10px">Lo que mejora, se ve. Confort, seguridad, ahorro y facilidad de uso, con indicadores que la plataforma pueda registrar.</p><p>Hablamos de horas evitadas, no de pesos ahorrados. Un número que no podemos demostrar no entra en ninguna pieza.</p></div>
+  </div>
+  <div class="card grad" style="margin-top:16px;border:0;text-align:center;padding:22px"><b>La base:</b> la validación de CYLGEM, venga de donde venga el dispositivo.</div>
+ </div>
+</section>
+
+<!-- 5 -->
+<section class="band alt" id="oferta">
+ <div class="wrap">
+  <div class="chead"><span class="n">5</span><div><h2>La oferta</h2><small>El todo es más que la suma de las partes</small></div></div>
+  <div class="cols">
+   <div class="thesis"><p>La macrovertical 8 no es lo que vendemos: es lo que somos.</p></div>
+   <div><p>La domótica integra sistemas que pueden ser monitoreados, controlados, automatizados y coordinados entre sí. Las 18 verticales son el catálogo de funcionalidades; las 8 macroverticales, la arquitectura de la oferta; y las escenas integradas, el principal argumento de comunicación.</p></div>
+   <div><p>Inteligencia y automatización integral no es un producto que se agrega al carrito. Es lo que pasa entre los productos: el diagnóstico, la integración, las escenas, la respuesta. El mapa completo nos ubica en la categoría; lo que mostramos como disponible es exactamente lo que cumplimos.</p></div>
+  </div>
+
+  <h3 class="k" style="margin-top:24px">El mapa de las 18 verticales</h3>
+  <p style="font-size:14px;color:var(--mute);margin-bottom:4px">Filtrá por macrovertical o por etapa. El color de cada macrovertical sale del isotipo (ver 8 · Iconografía).</p>
+  <div class="legend" id="legend"></div>
+  <div class="filt" id="filt"></div>
+  <p class="count" id="count"></p>
+  <div class="vmap" id="vmap" style="margin-top:14px"></div>
+
+  <h3 class="k" style="margin-top:36px">Las escenas: el lenguaje de la integración</h3>
+  <p style="max-width:52em">No describimos dispositivos: describimos lo que pasa en el espacio cuando se ponen a trabajar juntos. Y solo mostramos escenas que podemos garantizar siempre, también el día en que algo falla.</p>
+  <h4 class="eg">En casa</h4>
+  <div class="esc" id="esc"></div>
+  <h4 class="eg">En comercios, oficinas, gastronomía y hotelería</h4>
+  <p style="max-width:52em">En un espacio que se opera como negocio, la escena también es gestión. Cada hora de luz y de climatización que evitamos en un ambiente vacío es ahorro para el cliente y menos impacto ambiental, el mismo compromiso con el medio ambiente que CYLGEM asume en toda su actividad. Ese ahorro se ve en las métricas, y cada acceso fuera de horario queda registrado y a la vista.</p>
+  <div class="esc" id="esc2"></div>
+
+  <div class="cols two" style="margin-top:44px">
+   <div class="thesis"><p>Los Partners suman capacidad. La responsabilidad sigue siendo nuestra.</p><p style="font-weight:400;color:var(--ink);font-size:16px">Integral no es fabricar todo: es responder por todo.</p></div>
+   <div>
+    <h3 class="k">Partners Estratégicos, con <b>imotion connect</b> como controller</h3>
+    <p>No trabajamos solos, y no lo escondemos. En cada etapa sumamos Partners Estratégicos: los que producen o fabrican, los que conocen a fondo la aplicación de cada dispositivo, los que instalan y los que acompañan después. Lo que no delegamos es el control.</p>
+    <p>El Management de <b>imotion connect</b> es el controller de toda la operación: fija el estándar de calidad de cada etapa, certifica a cada Partner y responde ante el cliente por el sistema completo.</p>
+   </div>
+  </div>
+  <div class="scroll" style="margin-top:18px"><table class="stack" id="ptn"><thead><tr><th>Etapa</th><th>Qué suman los Partners Estratégicos</th><th>Qué controla el Management de imotion connect</th></tr></thead><tbody>
+   <tr><td><b>1 · Producción y fabricación</b></td><td>Producción propia en planta CYLGEM, empezando por iluminación y tomas; fabricantes asociados que completan verticales; producción con marca propia en China para ganar escala.</td><td>La especificación, la homologación y la validación CYLGEM de cada dispositivo antes de que entre al catálogo.</td></tr>
+   <tr><td><b>2 · Aplicación e integración</b></td><td>Expertise en la aplicación de cada familia de dispositivos y en su integración con otros sistemas.</td><td>La compatibilidad verificada en cada proyecto y una sola app para todo el sistema.</td></tr>
+   <tr><td><b>3 · Instalación</b></td><td>Equipos que instalan en territorio, con nuestro estándar.</td><td>El protocolo de instalación, la certificación de cada Partner y la puesta en marcha.</td></tr>
+   <tr><td><b>4 · Funcionamiento y postventa</b></td><td>Soporte técnico en territorio, mantenimiento y evolución del sistema.</td><td>La atención técnica, la garantía de dos años sobre el sistema y las métricas de funcionamiento.</td></tr>
+  </tbody></table></div>
+
+  <div class="cols two" style="margin-top:40px">
+   <div><h3 class="k">Tres horizontes</h3><p>El catálogo crece por etapas; la promesa, desde el primer día, es completa.</p><p style="font-size:14px;color:var(--mute)">Es la visión de CYLGEM llevada a nuestra marca: una empresa en continuo crecimiento, perdurable en el tiempo.</p></div>
+   <div><ul class="gt"><li><b>Hoy.</b> Las once verticales de la primera etapa. Control y automatización.</li><li><b>Ampliación.</b> Seguridad y alarmas, energía, agua y riego. Automatización con medición.</li><li><b>Integración plena.</b> Piscinas y spas, y movilidad eléctrica. Inteligencia adaptativa.</li></ul><p style="font-size:14px;color:var(--mute)">El orden y el ritmo los fija la Dirección según el plan de inversión. La promesa no cambia de un horizonte a otro.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 6 -->
+<section class="band" id="voz">
+ <div class="wrap">
+  <div class="chead"><span class="n">6</span><div><h2>Voz, tono y lenguaje</h2><small>Hechos son amores, y no buenas razones</small></div></div>
+  <div class="cols">
+   <div class="thesis"><p>Emocional en la forma, racional en el sustento.</p><p style="font-weight:400;color:var(--ink);font-size:16px">Nunca un adjetivo donde puede ir una evidencia.</p></div>
+   <div>
+    <div class="blk"><h3>Voz</h3><p><b>imotion connect</b> habla como quien entiende de casas además de entender de tecnología. No explica el dispositivo: parte de la rutina de la persona que tiene enfrente.</p><p>Es la voz de alguien que va a estar del otro lado cuando algo falle. Honesta, cercana, sin elitismo.</p></div>
+    <div class="blk"><h3>Tono</h3><ul class="gt"><li>Cálido, sin exageración.</li><li>Claro, sin tecnicismos.</li><li>Seguro, porque cada afirmación tiene su respaldo.</li><li>Sereno: quien ofrece tranquilidad no comunica con urgencia.</li></ul></div>
+   </div>
+   <div>
+    <div class="blk"><h3>Lenguaje de escenas, no de dispositivos</h3>
+    <p><b style="color:var(--rojo)">NO:</b> «Módulo dimmer Wi-Fi compatible con asistentes».<br><b style="color:#5f8f22">SÍ:</b> «La luz que te despierta despacio».</p>
+    <p><b style="color:var(--rojo)">NO:</b> «Controlador de persianas motorizadas».<br><b style="color:#5f8f22">SÍ:</b> «Las persianas se abren cuando arranca tu día».</p>
+    <p><b style="color:var(--rojo)">NO:</b> «Cerradura inteligente con app».<br><b style="color:#5f8f22">SÍ:</b> «La puerta que se abre sin buscar la llave».</p></div>
+   </div>
+  </div>
+
+  <div class="cols" style="margin-top:20px">
+   <div><h3 class="k">Persona verbal</h3><p>Primera persona del plural en toda la comunicación institucional. Al usuario, voseo rioplatense: «tu casa», «cuando llegás». Y una precisión: no le hablamos «al hogar» ni «al usuario». Le hablamos a la persona que vive ahí.</p></div>
+   <div class="blk"><h3 class="k">Las reglas de oro</h3><ul class="gt">
+    <li><b>Nunca prometemos lo que no podemos cumplir el peor día del año.</b></li>
+    <li><b>Ningún número sin dueño.</b> Si no lo podemos demostrar, no entra.</li>
+    <li><b>Comparamos por ambiente resuelto y costo total.</b> Nunca por tecla.</li>
+    <li><b>Siempre a la vista:</b> garantía, datos legales, quién instala, horario de soporte y respaldo de CYLGEM.</li>
+    <li><b>Ninguna palabra que sirva para cualquiera.</b> Si la frase la puede firmar otra marca de domótica, se reescribe.</li></ul></div>
+   <div><h3 class="k">Matriz editorial 70/20/10</h3>
+    <div style="display:flex;height:40px;border-radius:10px;overflow:hidden;margin:8px 0 12px;font-size:13px;font-weight:700"><div style="flex:70;background:#4B7CB6;color:#fff;display:grid;place-items:center">70</div><div style="flex:20;background:#91C7ED;color:#1f3550;display:grid;place-items:center">20</div><div style="flex:10;background:#FFC91F;color:#3A3A3C;display:grid;place-items:center">10</div></div>
+    <p><b>70 · Categoría y valor.</b> Escenas, usos, cómo se vive un espacio conectado.<br><b>20 · Humanidad.</b> La fábrica, la gente, los cuarenta años de CYLGEM.<br><b>10 · Promoción.</b> Con precio de referencia y garantía.</p></div>
+  </div>
+
+  <div style="margin-top:34px">
+   <h3 class="k">Cómo nos nombramos</h3>
+   <div class="cols">
+    <div><p class="say-big"><b>imotion connect</b></p><p>Siempre en minúscula, en dos palabras, también al inicio de una oración. En texto corrido va siempre en negrita. En la primera mención, el nombre completo; después, «IMC» en documentos internos y comerciales.</p></div>
+    <div><p class="say-big">«imoshion conéct»</p><p>La forma verbal está cerrada. Es la misma en ventas, instalación, atención, locución y video. El manual la fija para que nadie la invente.</p></div>
+    <div><p class="say-big"><b>by CYLGEM</b></p><p>La firma de respaldo. CYLGEM va siempre en mayúscula y no se traduce ni se abrevia.</p></div>
+   </div>
+   <div class="wr" style="margin-top:14px">
+    <div class="ok"><h4>Escritura correcta</h4><p><b>imotion connect</b></p><p>IMC</p><p><b>imotion connect</b> by CYLGEM</p></div>
+    <div class="no"><h4>Escritura incorrecta</h4><p>iMotion Connect</p><p>I-Motion · i-motion</p><p>Imotion Conect · emotion connect</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 7 -->
+<section class="band alt" id="historia">
+ <div class="wrap">
+  <div class="chead"><span class="n">7</span><div><h2>Historia</h2><small>Lo importante no es llegar primero, sino saber llegar</small></div></div>
+  <div class="cols">
+   <div class="thesis"><p><b>imotion connect</b> nace de una fábrica que hace cuarenta años que no puede fallar.</p></div>
+   <div><h3>El origen</h3><p>Detrás de nuestra marca está CYLGEM: cuarenta años fabricando electrónica en la Argentina, principalmente para la industria automotriz y de electrodomésticos, con laboratorio propio y normas ISO certificadas por TÜV.</p><p>Son industrias donde un dispositivo que falla no es una molestia: es un retiro de producto. Ese es nuestro respaldo técnico, y también nuestro validador.</p></div>
+   <div><h3>La nueva etapa</h3><p><b>imotion connect</b> lleva esa exigencia a la casa, al comercio y al hotel. Con un catálogo que crece por etapas y una promesa que, desde el primer día, es completa.</p><p>Ningún competidor de nuestra capa en la Argentina tiene una fábrica así detrás. Por eso CYLGEM tiene que estar en la primera pantalla del sitio, en el packaging, en la firma de mail y en su propio LinkedIn.</p></div>
+  </div>
+  <h3 class="k" style="margin-top:40px">Cuarenta años de electrónica argentina</h3>
+  <p style="max-width:52em">La historia de CYLGEM es la que da inicio, respaldo y soporte a <b>imotion connect</b>. Cada hito es una exigencia que aprendimos a cumplir antes de llevarla a la casa, al comercio y al hotel.</p>
+  <ol class="tl" id="tl"></ol>
+  <h3 class="k" style="margin-top:10px">Lo que heredamos de CYLGEM</h3>
+  <p style="max-width:52em">La misión de CYLGEM es desarrollar, fabricar y comercializar productos de alta calidad, con la mejor relación precio-calidad. Sus valores no quedan en un cuadro en la pared: cada uno tiene su forma concreta en <b>imotion connect</b>.</p>
+  <div class="scroll"><table class="stack" id="her"><thead><tr><th>Valor de CYLGEM</th><th>Cómo se ve en <b>imotion connect</b></th></tr></thead><tbody>
+   <tr><td><b>Compromiso con nuestros clientes</b></td><td>Siempre hay alguien que responde: atención técnica con horario publicado y dos años de garantía sobre el sistema.</td></tr>
+   <tr><td><b>Respeto por nuestra gente</b></td><td>Capacitamos, certificamos y respaldamos a cada Partner Estratégico que lleva nuestra marca a la casa del cliente.</td></tr>
+   <tr><td><b>Cumplimiento de normas de calidad</b></td><td>La validación CYLGEM de cada dispositivo, venga de producción propia, de un Partner o de nuestra marca producida en China.</td></tr>
+   <tr><td><b>Innovación y mejora continua</b></td><td>Métricas observables de confort, seguridad, ahorro y facilidad de uso, para mejorar con evidencia y no con promesas.</td></tr>
+   <tr><td><b>Trabajo en equipo</b></td><td>El modelo de Partners Estratégicos, con el Management de <b>imotion connect</b> como controller de toda la operación.</td></tr>
+  </tbody></table></div>
+  <p class="quote" style="margin-top:20px">No cuántos dispositivos tenemos, sino cuántos espacios funcionan. No cuánto prometemos, sino cuánto cumplimos.</p>
+ </div>
+</section>
+
+<!-- 8 -->
+<section class="band grad" id="identidad">
+ <div class="wrap cols two">
+  <div><span style="font-size:56px;font-weight:300;line-height:1">8</span></div>
+  <div><h2 style="font-size:clamp(28px,3.6vw,44px);font-weight:300">Guía de aplicación de la identidad visual</h2><p style="margin-top:14px;max-width:44em;font-size:17px">Cada punto de contacto con quien vive, opera o proyecta un espacio, y con cada Partner Estratégico, tiene que reflejar lo que sostiene a la marca: escucha, integración y respuesta. A continuación, las constantes de identidad visual de <b>imotion connect</b>.</p></div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Masterbrand</h2><small>El principal identificador visual</small></div></div>
+  <div class="specs">
+   <figure class="spec"><div class="plate"><img src="assets/imc-horizontal.jpg" alt="Versión horizontal"></div><figcaption><b>Horizontal, a color.</b> Versión principal. Es la que usamos por defecto.</figcaption></figure>
+   <figure class="spec"><div class="plate"><img src="assets/imc-vertical.jpg" alt="Versión vertical"></div><figcaption><b>Vertical, a color.</b> Para formatos altos, packaging y piezas centradas.</figcaption></figure>
+   <figure class="spec"><div class="plate dark"><img src="assets/imc-sigla-negro.jpg" alt="Versión sigla imc sobre negro"></div><figcaption><b>Sigla imc, sobre negro.</b> Para espacios reducidos y fondos oscuros, cuando el nombre completo ya está presente en la pieza.</figcaption></figure>
+   <figure class="spec"><div class="plate" style="padding:0;overflow:hidden"><img src="assets/imc-linea-degrade.jpg" alt="Versión de línea sobre degradé azul"></div><figcaption><b>Línea, sobre degradé.</b> Isotipo en contorno blanco sobre el degradé de marca.</figcaption></figure>
+  </div>
+  <div class="rule"><span>No estirar</span><span>No comprimir</span><span>No aplicar sombras</span><span>No recolorear el isotipo</span><span>Respetar sus proporciones</span></div>
+ </div>
+</section>
+
+<section class="band alt">
+ <div class="wrap">
+  <div class="chead"><div><h2>Arquitectura de marca</h2><small><b>imotion connect</b> al frente, CYLGEM como respaldo</small></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>Si la fábrica es nuestro respaldo, tiene que verse.</p></div>
+   <div>
+    <div class="endorse"><img src="assets/imc-horizontal.jpg" alt="imotion connect"><div class="by">by <img src="assets/cylgem.png" alt="CYLGEM"></div></div>
+    <p style="margin-top:14px"><b>imotion connect</b> es la marca de cara al usuario. La firma «by CYLGEM» la acompaña en sitio, packaging, firma de mail y piezas institucionales; en redes y piezas chicas puede ir solo en el pie.</p>
+    <h3 class="k" style="margin-top:22px">Sello de validación</h3>
+    <div class="seal"><span class="cl"><svg viewBox="0 0 100 88" aria-hidden="true"><polygon points="50,6 5,83 95,83" fill="#4B7CB6" stroke="#4B7CB6" stroke-width="9" stroke-linejoin="round"/><polyline points="51,19 18,75.5 81,75.5" fill="none" stroke="#fff" stroke-width="7.5" stroke-linejoin="round"/><polyline points="54.5,31 54.5,64 73,64" fill="none" stroke="#fff" stroke-width="7.5" stroke-linejoin="round"/></svg></span><div><b>Validado por CYLGEM</b><br>40 años de electrónica argentina</div></div>
+    <p style="margin-top:14px">Un sello para todo lo que integramos, venga de producción propia, de un Partner Estratégico o de nuestra marca producida en China. Es la evidencia visible de que todo pasó por el mismo estándar.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Proporciones y área de resguardo</h2><small>El espacio que ningún otro objeto invade</small></div></div>
+  <div class="cols two">
+   <div><p>La masterbrand se presenta siempre en su forma original. El área de resguardo equivale a la altura de la «o» del logotipo, alrededor de todo el conjunto.</p></div>
+   <div class="reserve"><div class="box"><img src="assets/imc-horizontal.jpg" alt="Área de resguardo del isologotipo"></div></div>
+  </div>
+  <div class="chead" style="margin-top:44px"><div><h2>Tamaños mínimos</h2><small>El umbral de legibilidad de todos sus componentes</small></div></div>
+  <div class="cols two">
+   <div><p>Por debajo de estas medidas, el logotipo pierde lectura. Para usos menores, usamos la sigla imc o el isotipo solo.</p></div>
+   <div class="sizes">
+    <div><img src="assets/imc-horizontal.jpg" alt="" style="width:62px"><span><b>Impreso:</b> 10 mm de alto para la versión horizontal.</span></div>
+    <div><img src="assets/imc-horizontal.jpg" alt="" style="width:96px"><span><b>Digital:</b> 120 px de ancho para la versión horizontal.</span></div>
+    <div><img src="assets/imc-isotipo.jpg" alt="" style="width:32px"><span><b>Isotipo solo:</b> 24 px o 6 mm. Avatar de redes y favicon.</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="band alt">
+ <div class="wrap">
+  <div class="chead"><div><h2>Colores</h2><small>El espectro del isotipo y el azul que lo ordena</small></div></div>
+  <div class="cols two">
+   <div><p>El azul y el grafito sostienen la marca. El espectro es acento: vive en el isotipo, en la iconografía y en los códigos de macrovertical, nunca como fondo de grandes superficies.</p></div>
+   <div>
+    <h3 class="k">Principales</h3><div class="pal" id="pal1"></div>
+    <div class="gradbar" aria-label="Degradé de marca"></div><p style="font-size:13px;color:var(--mute)">Degradé de marca: azul #4B7CB6 a celeste #91C7ED, de izquierda a derecha.</p>
+    <h3 class="k" style="margin-top:22px">Espectro de acento</h3><div class="pal" id="pal2"></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="chead"><div><h2>Tipografía: Open Sans</h2><small>Para todos los textos de la marca</small></div></div>
+  <div class="type">
+   <div><div class="aa">Aa</div><p style="margin-top:20px;max-width:34em">Open Sans es una fuente de Google con una familia amplia y muy legible en pantalla y en papel. La usamos en todos los textos. El logotipo es un dibujo y no se compone con ella.</p></div>
+   <div class="w">
+    <div style="font-weight:300"><span>Light</span><span>Bajadas y citas</span></div>
+    <div style="font-weight:400"><span>Regular</span><span>Texto corrido</span></div>
+    <div style="font-weight:600"><span>Semibold</span><span>Subtítulos</span></div>
+    <div style="font-weight:700"><span>Bold</span><span>Títulos y destacados</span></div>
+    <div style="font-weight:800"><span>ExtraBold</span><span>Cifras y titulares grandes</span></div>
+    <p style="margin-top:14px;font-size:14px;letter-spacing:.02em">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ<br>abcdefghijklmnñopqrstuvwxyz<br>0123456789 @ % $ / ( ) ¿?</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="band alt">
+ <div class="wrap">
+  <div class="chead"><div><h2>Iconografía</h2><small>Un ícono por vertical, un color por macrovertical</small></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>Los ocho colores del isotipo son las ocho macroverticales.</p><p style="font-weight:400;color:var(--ink);font-size:16px">El triángulo azul central, el que cubre a todos, es la macrovertical 8: inteligencia y automatización integral. Lo que pasa entre los productos.</p></div>
+   <div>
+    <p>Línea continua, trazo redondeado y esquinas suaves, en sintonía con la versión de línea del isotipo. Las verticales de la primera etapa van a color pleno; las de próximas etapas, atenuadas. Los íconos de esta página son una guía: la versión final se dibuja en vector.</p>
+    <div class="legend" id="legend2" style="pointer-events:none"></div>
+   </div>
+  </div>
+  <div class="icg" id="icg"></div>
+ </div>
+</section>
+
+<section class="band" id="aplicaciones">
+ <div class="wrap">
+  <div class="chead"><div><h2>Aplicaciones de marca</h2><small>La marca puesta a trabajar</small></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>La marca no vive en el manual: vive en la calle, en la obra y en la mano del cliente.</p></div>
+   <div><p>Indumentaria del equipo y de los Partners Estratégicos, merchandising y flota. Sobre superficies claras va el isologotipo a color; sobre superficies oscuras, la sigla <b>imc</b> con el isotipo a color; sobre el azul y el celeste de marca, el símbolo de línea en blanco.</p><p style="font-size:14px;color:var(--mute)">Vistas ilustrativas de aplicación. Cada pieza de producción se valida con su proveedor.</p></div>
+  </div>
+  <figure class="mosaic"><img src="assets/aplicaciones-mosaico.jpg?v=5" alt="Aplicaciones de imotion connect: camioneta de servicio, gorras, remeras, caja de envío y vasos térmicos" loading="lazy"></figure>
+  </div>
+ </div>
+</section>
+
+
+</main>
+
+<footer class="band">
+ <div class="wrap">
+  <div><h2 style="font-size:24px;font-weight:300">Guía de uso de la identidad visual</h2><p style="margin-top:12px">Para acceder al ToolKit con todos los masters y originales de la identidad visual de <b>imotion connect</b>, por favor comunicarse con: XXXXX</p></div>
+  <div><p>Para validar cualquier uso de la marca en una acción de comunicación, escribile a Frank Sozzani: <a href="mailto:franksozzani@fksc.com.ar">franksozzani@fksc.com.ar</a></p><p style="font-size:13px;opacity:.75">FKSC | Comunicación Estratégica · Versión de prueba, noviembre 2026</p></div>
+ </div>
+</footer>
+
+<script>
+{
+const M=[
+ {n:1,t:"Confort ambiental",c:"#F3921D"},
+ {n:2,t:"Entretenimiento y experiencias",c:"#AE1162"},
+ {n:3,t:"Seguridad y control de accesos",c:"#E32F21"},
+ {n:4,t:"Energía y sustentabilidad",c:"#E0A800"},
+ {n:5,t:"Espacios exteriores",c:"#7FAF3C"},
+ {n:6,t:"Operación y mantenimiento",c:"#5FA8DC"},
+ {n:7,t:"Bienestar y personalización",c:"#25AAE2"},
+ {n:8,t:"Inteligencia y automatización integral",c:"#4B7CB6"}];
+const I={
+1:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
+2:'<path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0zM12 9v7"/>',
+3:'<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/>',
+4:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 8h16M4 12h16M4 16h16"/>',
+5:'<path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16M3 21h18M14 12h.01"/>',
+6:'<path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/>',
+7:'<rect x="3" y="7" width="12" height="10" rx="2"/><path d="M15 10l6-3v10l-6-3"/>',
+8:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+9:'<path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/>',
+10:'<path d="M12 21V11M12 11c0-4-3-6-7-6 0 4 3 6 7 6zM12 13c0-3 3-5 7-5 0 3-3 5-7 5z"/>',
+11:'<path d="M3 17c2 0 2-2 4.5-2s2.5 2 4.5 2 2-2 4.5-2 2.5 2 4.5 2M3 21c2 0 2-2 4.5-2s2.5 2 4.5 2 2-2 4.5-2 2.5 2 4.5 2M8 13V4M16 13V4M8 8h8"/>',
+12:'<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6.5h2"/>',
+13:'<path d="M3 8h11a3 3 0 1 0-3-3M3 12h16a3 3 0 1 1-3 3M3 16h8"/>',
+14:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM12 8v5M12 16h.01"/>',
+15:'<path d="M2 9a15 15 0 0 1 20 0M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M12 20h.01"/>',
+16:'<path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/>',
+17:'<path d="M9 2v6M15 2v6M6 8h12v3a6 6 0 0 1-12 0zM12 17v5"/>',
+18:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>'};
+const V=[
+ [1,"Iluminación","Encendido, intensidad, temperatura de color, RGB, escenas y presencia",1,"e1"],
+ [2,"Climatización","Aire, calefacción, termostatos, suelo radiante y zonas térmicas",1,"e1"],
+ [3,"TV, audio y entretenimiento","Televisores, proyectores, home theater y música multiroom",2,"e1"],
+ [4,"Persianas, cortinas y toldos","Apertura, cierre, posición, lamas y protección solar",1,"e1"],
+ [5,"Puertas, portones y accesos","Cerraduras, portones, garajes, biometría y permisos temporales",3,"e1"],
+ [6,"Seguridad y alarmas","Sensores de movimiento y apertura, sirenas e intrusiones",3,"e2"],
+ [7,"Videovigilancia","Cámaras, visualización remota, grabación y videoporteros",3,"e1"],
+ [8,"Energía y consumo eléctrico","Medición, gestión de cargas, solar y baterías",4,"e2"],
+ [9,"Agua y gestión hidráulica","Pérdidas, corte automático, bombas, tanques y presión",4,"e2"],
+ [10,"Riego y jardines","Riego por sectores, clima y humedad del suelo",5,"e2"],
+ [11,"Piscinas y spas","Filtrado, temperatura, iluminación y niveles",5,"e2"],
+ [12,"Electrodomésticos inteligentes","Hornos, lavarropas, heladeras, lavavajillas y cafeteras",6,"e1"],
+ [13,"Calidad del aire y ambiente","Humedad, CO₂, partículas, purificación y ventilación",1,"e1"],
+ [14,"Seguridad técnica y prevención","Humo, monóxido, gas e inundaciones con alertas",6,"e1"],
+ [15,"Conectividad e infraestructura","Red, Wi-Fi, gateways y comunicación entre sistemas",8,"tr"],
+ [16,"Bienestar y confort personal","Luz circadiana, descanso y ambientes adaptativos",7,"e1"],
+ [17,"Movilidad y carga eléctrica","Cargadores de vehículos, potencia y programación",4,"e2"],
+ [18,"Asistentes y control por voz","Comandos, consultas y activación de escenas",8,"e1"]];
+const ST={e1:"Primera etapa",e2:"Próxima etapa",tr:"Capa transversal"};
+const svg=i=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+I[i]+'</svg>';
+const col=m=>M[m-1].c;
+let fM=0,fS="all";
+document.getElementById('icg').innerHTML=V.map(v=>`<div class="${v[4]=='e1'?'':'dim'}"><span style="background:${col(v[3])}">${svg(v[0])}</span>${String(v[0]).padStart(2,'0')} · ${v[1]}</div>`).join('');
+const vmap=document.getElementById('vmap');
+vmap.innerHTML=V.map(v=>`<article class="v ${v[4]=='e1'?'etapa1':v[4]=='e2'?'etapa2':v[4]=='tr'?'transv':''}" data-m="${v[3]}" data-s="${v[4]}"><div class="ic" style="background:${col(v[3])}">${svg(v[0])}</div><div><h4>${String(v[0]).padStart(2,'0')} · ${v[1]}</h4><p>${v[2]}</p><span class="prio ${v[4]=='e1'?'p-ahora':v[4]=='e2'?'p-prox':'p-mas'}">${ST[v[4]]}</span>${v[4]=='val'?'':''}</div></article>`).join('');
+const lg=(el,click)=>{el.innerHTML=M.map(m=>`<button type="button" data-m="${m.n}" aria-pressed="false"><i style="background:${m.c}"></i>${m.n} · ${m.t}</button>`).join('');if(click)el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const n=+b.dataset.m;fM=fM===n?0:n;el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',+x.dataset.m===fM));apply()})};
+lg(document.getElementById('legend'),true);lg(document.getElementById('legend2'),false);
+const F=[["all","Todas"],["e1","Primera etapa"],["e2","Próxima etapa"],["tr","Capa transversal"]];
+const filt=document.getElementById('filt');
+filt.innerHTML=F.map(f=>`<button type="button" data-s="${f[0]}" aria-pressed="${f[0]==='all'}">${f[1]}</button>`).join('');
+filt.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;fS=b.dataset.s;filt.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));apply()});
+function apply(){let k=0;vmap.querySelectorAll('.v').forEach(c=>{const on=(!fM||+c.dataset.m===fM)&&(fS==='all'||c.dataset.s===fS);c.classList.toggle('off',!on);if(on)k++});document.getElementById('count').textContent=k+' de 18 verticales';}
+apply();
+
+const C=[["Escuchamos antes de instalar","No arrancamos por el dispositivo. Arrancamos por la rutina de quien vive el espacio."],["Integramos con criterio","Lo que fabricamos y lo que suman otros funciona como un solo sistema."],["Respondemos por todo","Integral no es fabricar todo: es hacerse cargo de cómo funciona en la casa de alguien."],["Escenas, no teclas","Comunicamos lo que pasa cuando tocás. Lo que generamos, no lo que hacemos."],["Prometemos lo que cumplimos","Solo ofrecemos lo que podemos sostener el peor día del año."],["La evidencia antes que el adjetivo","Cada promesa lleva al lado lo que la demuestra."],["Crecemos sin endeudar la marca","Una vertical entra al catálogo cuando podemos responder por ella con la misma garantía."],["La capacidad marca el ritmo","La campaña se dimensiona por la capacidad de respuesta, no por las consultas que queremos."]];
+document.getElementById('cultura').innerHTML=C.map((c,i)=>`<div class="card"><div class="num">${i+1}</div><h4>${c[0]}</h4><p style="margin:0;color:var(--mute)">${c[1]}</p></div>`).join('');
+
+const S=[["01 · Residencial individual","Casas, departamentos, viviendas premium, casas de fin de semana","Total: las once verticales de la primera etapa","ahora","Ahora"],["02 · Residencial colectivo","Edificios, countries, barrios privados, desarrollos","Alto en unidades y espacios comunes","ahora","Ahora, por venta directa"],["03 · Comercios y retail","Locales, boutiques, showrooms, concesionarias","Alto en luz, clima, cortinas y accesos con horario","ahora","Ahora, comercio chico y mediano"],["04 · Hotelería","Hoteles boutique, apart hoteles, cabañas","Alto: la habitación es un ambiente que se repite","ahora","Ahora, hotel boutique"],["05 · Gastronomía y entretenimiento","Restaurantes, bares, cafeterías, salones","Alto: escenas visibles con lo que ya tenemos","ahora","Ahora"],["06 · Oficinas y espacios profesionales","Estudios, consultorios, coworkings","Medio: alcanza en espacios chicos","ahora","Ahora, formato chico"],["07 · Salud y bienestar","Clínicas, centros de estética, spas, residencias","Parcial: pide seguridad técnica y bienestar","prox","Próxima etapa"],["08 · Educación y cultura","Colegios, universidades, auditorios, museos","Parcial","prox","Próxima etapa"],["09 · Deportes y clubes","Gimnasios, clubes, complejos de piscinas","Parcial: pide piscinas, riego, energía","prox","Próxima etapa"],["10 · Industria e infraestructura","Depósitos, talleres, estaciones de servicio","Bajo: es inmótica, no domótica residencial","prox","Próxima etapa"]];
+document.getElementById('seg').innerHTML=S.map(s=>{const [n,...r]=s[0].split(' · ');return `<article class="v sg-${s[3]}"><div class="ic">${n}</div><div><h4>${r.join(' · ')}</h4><p>${s[1]}</p><p style="color:var(--ink)">${s[2]}</p><span class="prio p-${s[3]}">${s[4]}</span></div></article>`}).join('');
+
+const P=[["El dueño que habita","Una casa que se adapta a su manera de vivir","Lo que hacés desde la cama, y estar cuando no estás","Web, redes, wizard y kit"],["El que opera un espacio","Un espacio que trabaja solo y recibe mejor","Abre, cierra, enciende y apaga cuando corresponde","Venta directa y prescriptores"],["El arquitecto, el interiorista, la constructora","Un proyecto que suma valor sin complicarles la obra","Pensado conectado desde el plano, con alguien que responde","Ejecutivo de cuenta IMC"],["El desarrollador","Unidades que se venden mejor, con respaldo y escala","Fabricante argentino, garantía escrita, volumen","Venta directa"],["Los Partners Estratégicos","Un producto confiable y un estándar que los deja bien con su cliente","Te capacitamos, te certificamos y te respaldamos","Programa de Partners Estratégicos IMC"]];
+document.querySelector('#per tbody').innerHTML=P.map(p=>`<tr><td><b>${p[0]}</b></td><td>${p[1]}</td><td>«${p[2]}»</td><td>${p[3]}</td></tr>`).join('');
+
+const R=[["Primero entendemos cómo vivís.","Diagnóstico documentado antes de cualquier propuesta: wizard en la web para el kit, relevamiento remoto o visita para lo demás.",1],["Una sola app, un solo responsable, una sola garantía.","Dos años de garantía por producto, también sobre lo que integramos de nuestros Partners Estratégicos y de marca propia.",1],["Todo lo que conectamos, lo valida CYLGEM.","Protocolo de validación aplicado a producción propia, Partners Estratégicos y producción en China.",1],["Siempre hay alguien que responde.","Atención técnica de lunes a viernes, de 8 a 17 h, por mail o WhatsApp Business.",0],["Lo que mejora, se puede ver.","Métricas observables de confort, seguridad, ahorro y facilidad de uso.",1]];
+document.querySelector('#prom tbody').innerHTML=R.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}${r[2]?'':''}</td></tr>`).join('');
+
+const E=[["Buenos días","Abre persianas, enciende la luz de a poco, ajusta la temperatura, activa la música y prepara la cafetera compatible."],["Modo cine","Cierra cortinas, atenúa luces, enciende TV y audio, regula la climatización."],["Llegar a casa","Abre el portón, enciende la luz de entrada y encuentra el ambiente templado."],["Salir de casa","Apaga luces, ajusta la climatización, cierra persianas, verifica cerraduras y activa las cámaras."],["Buenas noches","Apaga luces generales, cierra persianas y ajusta los dormitorios."]];
+const TL=[["1986","Nace CYLGEM, dedicada al desarrollo y la producción de equipos electrónicos para automóviles."],["1992","Entrega su primera pieza OEM a Renault."],["1995","Entrega su primera pieza OEM a Volkswagen."],["1996","Comienza a abastecer a Robert Bosch."],["1998","Desarrolla el controlador electrónico para las expendedoras de agua Taragüí."],["2000","Entrega su primera pieza OEM a Ford."],["2001","Entrega su primera pieza OES a PSA Peugeot-Citroën y toma la representación en la Argentina de la firma italiana Cobre AT."],["2014","Se convierte en el principal fabricante de controles remotos para aires acondicionados: 500.000 unidades por año."],["2016","Comienza a abastecer a Toyota y a Mercedes-Benz."],["2018","Comienza la producción del módulo TFT para Yazaki-Toyota."],["2020","Decide expandir sus productos de la unidad automotriz e iluminación a países limítrofes."],["2021","Con el respaldo tecnológico de CYLGEM, nace <b>imotion connect</b>.",1]];
+document.getElementById('tl').innerHTML=TL.map(x=>`<li class="${x[2]?'imc':''}"><div class="y">${x[0]}</div><p>${x[1]}</p></li>`).join('');
+const E2=[
+["Comercio","Apertura del local","Habilita el acceso del personal autorizado y registra quién abrió y a qué hora. Enciende vidriera y salón, sube cortinas y lleva el clima a temperatura de trabajo.",["Seguridad"]],
+["Oficina","Sala vacía","Cuando el sensor de presencia no detecta a nadie, apaga luces y climatización. Cuando alguien entra, el ambiente vuelve a estar listo.",["Ahorro"]],
+["Oficina","Sala de reuniones","Baja persianas, atenúa la luz, enciende la pantalla y ajusta el clima con una sola orden, o con la voz.",["Confort"]],
+["Gastronomía","Servicio en marcha","Cambia luz, música y clima según el momento del día: almuerzo, tarde y noche, sin que nadie tenga que acordarse.",["Experiencia","Ahorro"]],
+["Hotel boutique","Llega el huésped","Habilita un acceso temporal, templa la habitación y enciende una luz de bienvenida. Con el check-out, todo se apaga.",["Experiencia","Ahorro"]],
+["Comercio y oficina","Cierre y fuera de horario","Apaga luces y climatización de todos los ambientes, cierra cortinas, verifica cerraduras y deja las cámaras grabando. Si se abre una puerta, o hay humo, gas o agua donde no debe, llega la alerta al celular.",["Ahorro","Seguridad"]]];
+document.getElementById('esc2').innerHTML=E2.map(e=>`<div class="card biz"><div class="num">${e[0]}</div><h4>${e[1]}</h4><p style="margin:8px 0 10px;color:var(--mute)">${e[2]}</p>${e[3].map(x=>`<span class="tag t-${x.toLowerCase()}">${x}</span>`).join(' ')}</div>`).join('');
+document.getElementById('esc').innerHTML=E.map(e=>`<div class="card"><h4>${e[0]}</h4><p style="margin:8px 0 0;color:var(--mute)">${e[1]}</p></div>`).join('');
+
+const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const cmyk=h=>{const [r,g,b]=rgb(h).map(x=>x/255),k=1-Math.max(r,g,b);if(k>=1)return'0.0.0.100';return[r,g,b].map(x=>Math.round((1-x-k)/(1-k)*100)).concat(Math.round(k*100)).join('.')};
+const sw=a=>a.map(c=>`<div class="sw"><div class="c" style="background:${c[1]}"></div><div class="d"><b>${c[0]}</b>HEX ${c[1]}<br>RGB ${rgb(c[1]).join('.')}<br>CMYK ${cmyk(c[1])} (aprox.)<br><button type="button" data-h="${c[1]}">Copiar HEX</button></div></div>`).join('');
+document.getElementById('pal1').innerHTML=sw([["Azul IMC","#4B7CB6"],["Celeste IMC","#91C7ED"],["Grafito","#3A3A3C"],["Blanco","#FFFFFF"]]);
+document.getElementById('pal2').innerHTML=sw([["Amarillo punto","#FFC91F"],["Naranja","#F3921D"],["Rojo","#E32F21"],["Magenta","#AE1162"],["Verde","#98C358"],["Cian","#25AAE2"]]);
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-h]');if(!b)return;const t=b.textContent;navigator.clipboard?.writeText(b.dataset.h).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent=t,1200)}).catch(()=>{b.textContent=b.dataset.h})});
+
+
+const links=[...document.querySelectorAll('#nav a')];
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id));const a=links.find(a=>a.classList.contains('on'));if(a){const n=document.getElementById('nav');n.scrollLeft=a.offsetLeft-n.offsetLeft-20}}})},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('main section[id]').forEach(s=>io.observe(s));
+
+}
+</script>
+</body>
+</html>
