@@ -55,6 +55,7 @@ header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 .ig .ring{flex:none;padding:2px;border-radius:50%;background:linear-gradient(45deg,#4B7CB6,#91C7ED)}.ig .ring .pav{width:36px;height:36px;border:2px solid #fff}
 .ig .sq{width:100%;aspect-ratio:1;object-fit:cover;display:block}.icons{display:flex;gap:16px;padding:10px 14px 4px}.icons svg{width:24px;height:24px;fill:none;stroke:#1d1d1f;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.cap{padding:4px 14px 14px}.cap p{margin:0;line-height:1.45}
 @media(max-width:760px){.avs,.posts{grid-template-columns:1fr}}
+.bgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:26px}.bgs .bgw{grid-column:1/-1}.bgs img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line)}.bgs figcaption{margin-top:10px;font-size:14px;color:var(--mute)}.bgs figcaption b{color:var(--ink)}@media(max-width:700px){.bgs{grid-template-columns:1fr}}
 nav.chap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
 nav.chap::-webkit-scrollbar{display:none}
 nav.chap a{flex:none;text-decoration:none;color:var(--mute);font-size:14px;padding:8px 10px;border-radius:8px;white-space:nowrap}
@@ -693,6 +694,22 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:
   <p style="font-size:14px;color:var(--mute);margin-top:12px">Simulaciones ilustrativas de aplicación. Los textos de los posteos son de ejemplo.</p>
  </div>
 </section>
+
+<section class="band" id="backgrounds">
+ <div class="wrap">
+  <div class="chead"><div><h2>Backgrounds</h2></div></div>
+  <div class="cols two">
+   <div class="thesis"><p>Un fondo propio hace que la marca se reconozca antes de leerla.</p></div>
+   <div><p>Tres fondos para presentaciones, pantallas, videollamadas y piezas digitales. Sobre los fondos claros va la masterbrand; sobre el fondo negro, la sigla <b>imc</b> con el isotipo a color.</p></div>
+  </div>
+  <div class="bgs">
+   <figure class="bgw"><img src="assets/bg-lineas-blanco.jpg" alt="Fondo blanco con triángulos en línea y la masterbrand" loading="lazy"><figcaption><b>Triángulos en línea, sobre blanco</b> · Los triángulos del símbolo en azul muy suave, apenas visibles, con la masterbrand.</figcaption></figure>
+   <figure><img src="assets/bg-lineas-negro.jpg" alt="Fondo negro con triángulos en línea gris oscuro y la sigla imc" loading="lazy"><figcaption><b>Triángulos en línea, sobre negro</b> · Las líneas en gris oscuro, con la sigla <b>imc</b>.</figcaption></figure>
+   <figure><img src="assets/bg-red.jpg" alt="Fondo claro con red de nodos conectados y la masterbrand" loading="lazy"><figcaption><b>Red de conexiones</b> · Nodos y líneas en gris celeste, con la masterbrand.</figcaption></figure>
+  </div>
+ </div>
+</section>
+
 
 
 
