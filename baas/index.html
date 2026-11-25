@@ -256,6 +256,9 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:
 :focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
 .msym{width:clamp(120px,14vw,190px);height:auto;margin-top:auto;padding-top:32px;display:block}
 .mleft{display:flex;flex-direction:column;height:100%}
+.cols.two.mani{grid-template-columns:minmax(0,1.35fr) minmax(0,2.5fr)}
+.mname{margin-top:6px;font-size:clamp(17px,1.75vw,24px);font-weight:300;line-height:1.2;white-space:nowrap}.mname b{font-weight:600}
+@media(max-width:960px){.cols.two.mani{grid-template-columns:1fr}.mname{font-size:clamp(18px,5.4vw,24px)}}
 @media(max-width:960px){.msym{width:110px;margin-top:20px;padding-top:0}}
 </style>
 </head>
@@ -293,8 +296,8 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:
 </section>
 
 <section class="band noche" id="manifiesto">
- <div class="wrap cols two">
-  <div class="mleft"><h2 style="font-size:clamp(28px,3.4vw,40px);font-weight:300;color:#C7BE93">Manifiesto</h2><p style="margin-top:6px;font-size:clamp(22px,2.4vw,28px);font-weight:500;line-height:1.2">BaaS | Board as a Service</p><img class="msym" src="assets/baas-negativo.svg" alt=""></div>
+ <div class="wrap cols two mani">
+  <div class="mleft"><h2 style="font-size:clamp(28px,3.4vw,40px);font-weight:300;color:#C7BE93">Manifiesto</h2><p class="mname"><b>BaaS</b> | Board as a Service</p><img class="msym" src="assets/baas-simbolo-outline.svg" alt=""></div>
   <div style="font-size:18px;max-width:44em">
    <p>Conocemos el punto exacto donde una empresa pierde velocidad. No está en el mercado ni en el equipo: está en la mesa donde alguien decide solo. Sabemos cómo se ve eso desde adentro. Definimos algo, seguimos adelante, y semanas después nos enteramos de qué se hizo, qué se trabó y por qué. Tarde, siempre tarde, cuando ya no queda margen para corregir.</p>
    <p>Creemos que el criterio senior nunca faltó. Lo que faltó fue la manera de sentarlo a la mesa, a la medida de cada organización. Venía en un solo formato —entero, fijo y caro—. Para muchas empresas quedó fuera de alcance; para otras, la mesa que ya tienen se armó para otro momento y no reúne las capacidades que los desafíos de hoy exigen.</p>
